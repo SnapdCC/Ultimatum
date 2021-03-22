@@ -1,0 +1,13 @@
+[gd_scene format=2]
+
+[node name="Title" type="Label"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -37.0
+margin_top = 153.852
+margin_right = 37.0
+margin_bottom = 167.852
+text = "Ultimatum"
+__meta__ = {
+"_edit_use_anchors_": false
+}
