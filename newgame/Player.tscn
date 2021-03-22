@@ -1,9 +1,11 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://MaincharacterConcept.png" type="Texture" id=2]
 [ext_resource path="res://walkCycleMaincharacer (1).png" type="Texture" id=3]
 [ext_resource path="res://PunchSpriteSheet.png" type="Texture" id=4]
+[ext_resource path="res://MaincharacteridleStance.png" type="Texture" id=5]
+[ext_resource path="res://MainCharacterLightSprite.png" type="Texture" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 26.6944
@@ -90,9 +92,73 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="Animation" id=23]
+resource_name = "Double Punch"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 6 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 482, 37, 63, 97 ), Rect2( 571, 36, 76, 98 ), Rect2( 668, 36, 79, 98 ), Rect2( 482, 37, 63, 97 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( -1, -31 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/HurtArea/Collision2ndPunch:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite/HurtArea/CollisionPunch:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
 [sub_resource type="Animation" id=19]
 resource_name = "Idle"
-length = 0.1
+length = 0.3
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -104,7 +170,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 2 ) ]
+"values": [ ExtResource( 5 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:region_rect")
@@ -113,10 +179,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Rect2( 18, 0, 65, 100 ) ]
+"values": [ Rect2( 32, 23, 65, 100 ), Rect2( 189, 25, 67, 97 ), Rect2( 348, 31, 64, 92 ), Rect2( 189, 25, 67, 97 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Sprite:position")
@@ -227,6 +293,9 @@ tracks/2/keys = {
 [sub_resource type="RectangleShape2D" id=22]
 extents = Vector2( 20, 7 )
 
+[sub_resource type="RectangleShape2D" id=24]
+extents = Vector2( 17.0951, 7.22027 )
+
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 3
 collision_mask = 3
@@ -254,15 +323,16 @@ frames = SubResource( 18 )
 animation = "Punch"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+"anims/Double Punch" = SubResource( 23 )
 anims/Idle = SubResource( 19 )
 anims/Punch = SubResource( 20 )
 anims/Walk = SubResource( 21 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -1, -31 )
-texture = ExtResource( 2 )
+texture = ExtResource( 6 )
 region_enabled = true
-region_rect = Rect2( 18, 0, 65, 100 )
+region_rect = Rect2( 482, 37, 63, 97 )
 
 [node name="HurtArea" type="Area2D" parent="Sprite"]
 position = Vector2( 1, 31 )
@@ -272,6 +342,11 @@ collision_mask = 2
 [node name="CollisionPunch" type="CollisionShape2D" parent="Sprite/HurtArea"]
 position = Vector2( 29.3462, -57.3518 )
 shape = SubResource( 22 )
+disabled = true
+
+[node name="Collision2ndPunch" type="CollisionShape2D" parent="Sprite/HurtArea"]
+position = Vector2( 21.6912, -57.7319 )
+shape = SubResource( 24 )
 disabled = true
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

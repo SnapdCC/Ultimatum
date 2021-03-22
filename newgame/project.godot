@@ -19,10 +19,14 @@ config/name="lol"
 run/main_scene="res://PlayerScript.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Pp="*res://PP.gd"
+
 [display]
 
-window/size/width=1280
-window/size/height=720
+window/size/width=500
+window/size/height=300
 
 [importer_defaults]
 
@@ -63,5 +67,6 @@ punch={
 
 [rendering]
 
+quality/2d/use_pixel_snap=true
 environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"

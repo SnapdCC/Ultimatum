@@ -3,8 +3,16 @@ signal walls
 
 export var speed = 220
 var screen_size
+
+var canDoubleHit = false
+var isDoubleHitActive = false
+
 var holder
 var facing_right
+var moveFrameArray = [
+	[load("res://PunchSpriteSheet.png"), Rect2(Vector2(629, 0), Vector2(77, 100)),
+	Rect2(Vector2(787, 3), Vector2(63, 97))] 
+]
 
 var tempAnim
 var anim_new
@@ -24,7 +32,20 @@ func _physics_process(delta):
 	self.z_index = self.position.y
 	var velocity = Vector2()
 
-	if Input.is_action_just_pressed("punch"):
+# watches for specific frames to see when one can input punch a second time to make the double punch
+	if ($Sprite.texture == moveFrameArray[0][0]):
+		if ($Sprite.region_rect == moveFrameArray[0][1] or $Sprite.region_rect == moveFrameArray[0][2]):
+			if (Input.is_action_just_pressed("punch") and canDoubleHit):
+				isDoubleHitActive = true
+				anim_new = "Double Punch"
+				canDoubleHit = false
+				doubleHitPlay()
+	else:
+		canDoubleHit = false
+
+# watches for punch and if double punch is available
+	if (Input.is_action_just_pressed("punch") and !isDoubleHitActive):
+		canDoubleHit = true
 		isPunching = true
 		tempAnim = "Punch"
 		
@@ -53,6 +74,8 @@ func _physics_process(delta):
 			else:
 				$Sprite.scale.x = -1
 	
+	
+	
 	velocity = move_and_slide(velocity * speed)
 	
 	#Checking on every frame, not every key
@@ -60,28 +83,24 @@ func _physics_process(delta):
 	
 # Swaps animations properly and doesn't override them with multiple inputs
 func animationSwapper(anim):
-	if (anim != anim_new):
+	if (anim != anim_new and !isDoubleHitActive):
 		anim_new = anim
 		animationPlayer.play(anim)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+#double punch playing function
+func doubleHitPlay():
+	animationPlayer.stop()
+	animationPlayer.play("Double Punch")
 
-
-
-
-
-func _on_Area2D_area_entered(area):
-	print("bruh") # Replace with function body.
-
-
+# finishes animations so they don't loop or get stuck
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if (anim_name == "Punch"):
 		isPunching = false
+	elif (anim_name == "Double Punch"):
+		isPunching = false
+		isDoubleHitActive = false
 
-
-
+# area for hits
 func _on_HurtArea_area_entered(area):
 	if (area.get_parent().get_node_or_null("enemy") != null):
 		print(area.get_parent().name)
