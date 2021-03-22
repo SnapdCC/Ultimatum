@@ -260,9 +260,9 @@ anims/Walk = SubResource( 21 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -1, -31 )
-texture = ExtResource( 4 )
+texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 787, 3, 63, 97 )
+region_rect = Rect2( 18, 0, 65, 100 )
 
 [node name="HurtArea" type="Area2D" parent="Sprite"]
 position = Vector2( 1, 31 )
@@ -270,7 +270,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionPunch" type="CollisionShape2D" parent="Sprite/HurtArea"]
-position = Vector2( 18, -41 )
+position = Vector2( 29.3462, -57.3518 )
 shape = SubResource( 22 )
 disabled = true
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
