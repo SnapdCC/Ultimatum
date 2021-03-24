@@ -19,80 +19,80 @@ height = 32.6127
 extents = Vector2( 33.9537, 3 )
 
 [sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 150, 100 )
-
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 4 )
-region = Rect2( 150, 0, 150, 100 )
-
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 4 )
-region = Rect2( 300, 0, 150, 100 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 4 )
-region = Rect2( 450, 0, 150, 100 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 4 )
-region = Rect2( 600, 0, 150, 100 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 4 )
-region = Rect2( 750, 0, 150, 100 )
-
-[sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 102, 100 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 3 )
 region = Rect2( 102, 0, 102, 100 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 3 )
 region = Rect2( 204, 0, 102, 100 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 3 )
 region = Rect2( 306, 0, 102, 100 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 3 )
 region = Rect2( 408, 0, 102, 100 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 3 )
 region = Rect2( 510, 0, 102, 100 )
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 3 )
 region = Rect2( 612, 0, 102, 100 )
 
-[sub_resource type="AtlasTexture" id=17]
+[sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 3 )
 region = Rect2( 714, 0, 102, 100 )
 
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 150, 100 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 4 )
+region = Rect2( 150, 0, 150, 100 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 4 )
+region = Rect2( 300, 0, 150, 100 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 4 )
+region = Rect2( 450, 0, 150, 100 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 4 )
+region = Rect2( 600, 0, 150, 100 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 4 )
+region = Rect2( 750, 0, 150, 100 )
+
 [sub_resource type="SpriteFrames" id=18]
 animations = [ {
-"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
-"loop": false,
-"name": "Punch",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 2.5
 }, {
-"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
 "loop": true,
 "name": "Walk",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"loop": false,
+"name": "Punch",
+"speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=19]
 resource_name = "Double Punch"
 length = 0.3
 tracks/0/type = "value"
@@ -156,8 +156,7 @@ tracks/4/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=19]
-resource_name = "Idle"
+[sub_resource type="Animation" id=20]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -197,8 +196,7 @@ tracks/2/keys = {
 "values": [ Vector2( -1, -31 ) ]
 }
 
-[sub_resource type="Animation" id=20]
-resource_name = "Punch"
+[sub_resource type="Animation" id=21]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:region_rect")
@@ -249,8 +247,7 @@ tracks/3/keys = {
 "values": [ true, true, false, true ]
 }
 
-[sub_resource type="Animation" id=21]
-resource_name = "Walk"
+[sub_resource type="Animation" id=22]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -290,7 +287,7 @@ tracks/2/keys = {
 "values": [ Vector2( -1, -31 ), Vector2( -1, -31 ), Vector2( -1, -31 ), Vector2( -1, -31 ), Vector2( -1, -31 ), Vector2( -1, -31 ), Vector2( -1, -31 ), Vector2( -1, -31 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=22]
+[sub_resource type="RectangleShape2D" id=23]
 extents = Vector2( 20, 7 )
 
 [sub_resource type="RectangleShape2D" id=24]
@@ -323,10 +320,10 @@ frames = SubResource( 18 )
 animation = "Punch"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-"anims/Double Punch" = SubResource( 23 )
-anims/Idle = SubResource( 19 )
-anims/Punch = SubResource( 20 )
-anims/Walk = SubResource( 21 )
+"anims/Double Punch" = SubResource( 19 )
+anims/Idle = SubResource( 20 )
+anims/Punch = SubResource( 21 )
+anims/Walk = SubResource( 22 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -1, -31 )
@@ -341,7 +338,7 @@ collision_mask = 2
 
 [node name="CollisionPunch" type="CollisionShape2D" parent="Sprite/HurtArea"]
 position = Vector2( 29.3462, -57.3518 )
-shape = SubResource( 22 )
+shape = SubResource( 23 )
 disabled = true
 
 [node name="Collision2ndPunch" type="CollisionShape2D" parent="Sprite/HurtArea"]
