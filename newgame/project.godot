@@ -25,8 +25,8 @@ Pp="*res://PP.gd"
 
 [display]
 
-window/size/width=500
-window/size/height=300
+window/size/width=1280
+window/size/height=720
 
 [importer_defaults]
 

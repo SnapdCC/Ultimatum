@@ -21,6 +21,7 @@ radius = 17.3228
 height = 30.8419
 
 [node name="Main" type="Node2D"]
+scale = Vector2( 2.56, 2.4 )
 
 [node name="Panel" type="Panel" parent="."]
 margin_right = 40.0
