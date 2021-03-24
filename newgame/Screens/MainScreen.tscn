@@ -41,30 +41,26 @@ __meta__ = {
 [node name="Menu" type="VBoxContainer" parent="ViewportContainer"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -190.0
+margin_left = -90.0
 margin_top = 450.0
-margin_right = 52.0
+margin_right = 152.0
 margin_bottom = 592.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PlayButton" parent="ViewportContainer/Menu" instance=ExtResource( 1 )]
-margin_left = 70.0
-margin_right = 312.0
 
 [node name="QuitButton" parent="ViewportContainer/Menu" instance=ExtResource( 3 )]
-margin_left = 70.0
 margin_top = 73.0
-margin_right = 312.0
 margin_bottom = 142.0
 
 [node name="LogoResized" type="TextureRect" parent="ViewportContainer"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -520.0
+margin_left = -490.0
 margin_top = 130.0
-margin_right = 480.001
+margin_right = 510.0
 margin_bottom = 422.0
 texture = ExtResource( 4 )
 stretch_mode = 5
