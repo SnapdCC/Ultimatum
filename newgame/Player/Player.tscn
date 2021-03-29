@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sounds/SoundEffectStream.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Player/Sprites/walkCycleMaincharacer (1).png" type="Texture" id=8]
 [ext_resource path="res://Player/Sprites/HeavyAttack2.png" type="Texture" id=9]
 [ext_resource path="res://Player/Sprites/MaincharacterConcept.png" type="Texture" id=10]
+[ext_resource path="res://Player/Sprites/blockingSpriteSheet.png" type="Texture" id=11]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 26.6944
@@ -211,6 +212,46 @@ tracks/5/keys = {
 "stream": ExtResource( 4 )
 } ],
 "times": PoolRealArray( 0.198121 )
+}
+
+[sub_resource type="Animation" id=28]
+resource_name = "Guard"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 11 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Rect2( 47, 24, 65, 100 ), Rect2( 187, 24, 65, 100 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( -1, -31 ) ]
 }
 
 [sub_resource type="Animation" id=21]
@@ -486,6 +527,7 @@ animation = "Punch"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Death = SubResource( 19 )
 "anims/Double Punch" = SubResource( 20 )
+anims/Guard = SubResource( 28 )
 "anims/Heavy Attack" = SubResource( 21 )
 anims/Idle = SubResource( 22 )
 anims/Punch = SubResource( 23 )
@@ -493,9 +535,9 @@ anims/Walk = SubResource( 24 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -1, -31 )
-texture = ExtResource( 8 )
+texture = ExtResource( 6 )
 region_enabled = true
-region_rect = Rect2( 27, 0, 56, 100 )
+region_rect = Rect2( 32, 23, 65, 100 )
 
 [node name="HurtArea" type="Area2D" parent="Sprite"]
 position = Vector2( 1, 31 )
