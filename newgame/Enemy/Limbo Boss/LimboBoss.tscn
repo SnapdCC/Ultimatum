@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Enemy/Limbo Boss/hurtLimboSpriteSheet.png" type="Texture" id=1]
 [ext_resource path="res://Enemy/Limbo Boss/IdleLimbo.png" type="Texture" id=2]
@@ -6,14 +6,14 @@
 [ext_resource path="res://Enemy/Limbo Boss/StandardLimbo.png" type="Texture" id=4]
 [ext_resource path="res://Enemy/Limbo Boss/TauntLimbo.png" type="Texture" id=5]
 [ext_resource path="res://Enemy/Limbo Boss/LimboBossDyingSprite.png" type="Texture" id=6]
-
+[ext_resource path="res://Enemy/Limbo Boss/LimboBoss.gd" type="Script" id=7]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 25.8185
 height = 87.5644
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 38.8524, 7.55626 )
+extents = Vector2( 21.2431, 7.55626 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "Death"
@@ -257,7 +257,11 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -78 ) ]
 }
 
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 22.333, 10 )
+
 [node name="LimboBoss" type="KinematicBody2D"]
+script = ExtResource( 7 )
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( 0.840881, -74.1471 )
@@ -281,7 +285,14 @@ anims/Taunt = SubResource( 7 )
 anims/Walk = SubResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -80 )
-texture = ExtResource( 6 )
+position = Vector2( 0, -78 )
+texture = ExtResource( 4 )
 region_enabled = true
-region_rect = Rect2( 33, 35, 61, 165 )
+region_rect = Rect2( 424, 45, 76, 153 )
+
+[node name="HurtAreaLimboPunch" type="Area2D" parent="Sprite"]
+
+[node name="PunchShape" type="CollisionShape2D" parent="Sprite/HurtAreaLimboPunch"]
+position = Vector2( 17.818, -17.3725 )
+shape = SubResource( 9 )
+[connection signal="area_entered" from="Sprite/HurtAreaLimboPunch" to="." method="_on_HurtAreaLimboPunch_area_entered"]
