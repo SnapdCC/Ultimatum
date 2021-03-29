@@ -7,6 +7,8 @@ var screen_size
 var canDoubleHit = false
 var isDoubleHitActive = false
 
+var isKicking = false
+
 var holder
 var facing_right
 var moveFrameArray = [
@@ -49,7 +51,12 @@ func _physics_process(delta):
 		isPunching = true
 		tempAnim = "Punch"
 		
-	if (!isPunching):
+		#plays kick animation and attack
+	if (Input.is_action_just_pressed("kick")):
+		isKicking = true
+		tempAnim = "Heavy Attack"
+		
+	if (!isPunching and !isKicking):
 		if Input.is_action_pressed("ui_right"):
 			velocity.x += 1
 		if Input.is_action_pressed("ui_left"):
@@ -99,6 +106,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	elif (anim_name == "Double Punch"):
 		isPunching = false
 		isDoubleHitActive = false
+	elif (anim_name == "Heavy Attack"):
+		isKicking = false
 
 # area for hits
 func _on_HurtArea_area_entered(area):
