@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://MaincharacterConcept.png" type="Texture" id=2]
@@ -6,7 +6,8 @@
 [ext_resource path="res://PunchSpriteSheet.png" type="Texture" id=4]
 [ext_resource path="res://MaincharacteridleStance.png" type="Texture" id=5]
 [ext_resource path="res://MainCharacterLightSprite.png" type="Texture" id=6]
-[ext_resource path="res://Sounds/Punch 1 (flesh).ogg" type="AudioStream" id=7]
+[ext_resource path="res://HeavyAttack.png" type="Texture" id=7]
+[ext_resource path="res://dyingPlayercharacter.png" type="Texture" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 26.6944
@@ -82,16 +83,56 @@ animations = [ {
 "name": "Walk",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
-"loop": false,
-"name": "Punch",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 2.5
+}, {
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"loop": false,
+"name": "Punch",
+"speed": 5.0
 } ]
+
+[sub_resource type="Animation" id=25]
+resource_name = "Death"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 52, 37, 45, 98 ), Rect2( 170, 49, 63, 82 ), Rect2( 296, 64, 93, 67 ), Rect2( 430, 105, 114, 28 ), Rect2( 592, 111, 115, 22 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( -1, -31 ), Vector2( -1, -25 ), Vector2( -1, -19 ), Vector2( -1, 0 ), Vector2( -1, 2 ) ]
+}
 
 [sub_resource type="Animation" id=19]
 resource_name = "Double Punch"
@@ -156,35 +197,45 @@ tracks/4/keys = {
 "update": 1,
 "values": [ true ]
 }
-tracks/5/type = "audio"
-tracks/5/path = NodePath("SoundEffectStream")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 7 )
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": null
-} ],
-"times": PoolRealArray( 0.1, 0.235548 )
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("SoundEffectStream:playing")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
+
+[sub_resource type="Animation" id=26]
+resource_name = "Heavy Attack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ ExtResource( 7 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 215, 27, 57, 97 ), Rect2( 370, 26, 85, 98 ), Rect2( 521, 23, 64, 103 ), Rect2( 215, 27, 57, 97 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( -1, -31 ) ]
 }
 
 [sub_resource type="Animation" id=20]
@@ -277,36 +328,6 @@ tracks/3/keys = {
 "update": 1,
 "values": [ true, true, false, true ]
 }
-tracks/4/type = "audio"
-tracks/4/path = NodePath("SoundEffectStream")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": null
-}, {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 7 )
-} ],
-"times": PoolRealArray( 0, 0.102007 )
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("SoundEffectStream:stream")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0.236555 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 7 ) ]
-}
 
 [sub_resource type="Animation" id=22]
 length = 0.8
@@ -381,16 +402,18 @@ frames = SubResource( 18 )
 animation = "Punch"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Death = SubResource( 25 )
 "anims/Double Punch" = SubResource( 19 )
+"anims/Heavy Attack" = SubResource( 26 )
 anims/Idle = SubResource( 20 )
 anims/Punch = SubResource( 21 )
 anims/Walk = SubResource( 22 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -1, -31 )
-texture = ExtResource( 4 )
+texture = ExtResource( 7 )
 region_enabled = true
-region_rect = Rect2( 787, 3, 63, 97 )
+region_rect = Rect2( 215, 27, 57, 97 )
 
 [node name="HurtArea" type="Area2D" parent="Sprite"]
 position = Vector2( 1, 31 )
@@ -405,9 +428,7 @@ disabled = true
 [node name="Collision2ndPunch" type="CollisionShape2D" parent="Sprite/HurtArea"]
 position = Vector2( 21.6912, -57.7319 )
 shape = SubResource( 24 )
-
-[node name="SoundEffectStream" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
+disabled = true
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="area_entered" from="Sprite/HurtArea" to="." method="_on_HurtArea_area_entered"]
