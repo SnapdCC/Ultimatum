@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://MaincharacterConcept.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://PunchSpriteSheet.png" type="Texture" id=4]
 [ext_resource path="res://MaincharacteridleStance.png" type="Texture" id=5]
 [ext_resource path="res://MainCharacterLightSprite.png" type="Texture" id=6]
+[ext_resource path="res://Sounds/Punch 1 (flesh).ogg" type="AudioStream" id=7]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 26.6944
@@ -81,15 +82,15 @@ animations = [ {
 "name": "Walk",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 2.5
-}, {
 "frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
 "loop": false,
 "name": "Punch",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 2.5
 } ]
 
 [sub_resource type="Animation" id=19]
@@ -154,6 +155,36 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+tracks/5/type = "audio"
+tracks/5/path = NodePath("SoundEffectStream")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 7 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": null
+} ],
+"times": PoolRealArray( 0.1, 0.235548 )
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("SoundEffectStream:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=20]
@@ -246,6 +277,36 @@ tracks/3/keys = {
 "update": 1,
 "values": [ true, true, false, true ]
 }
+tracks/4/type = "audio"
+tracks/4/path = NodePath("SoundEffectStream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": null
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 7 )
+} ],
+"times": PoolRealArray( 0, 0.102007 )
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("SoundEffectStream:stream")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.236555 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ) ]
+}
 
 [sub_resource type="Animation" id=22]
 length = 0.8
@@ -327,9 +388,9 @@ anims/Walk = SubResource( 22 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -1, -31 )
-texture = ExtResource( 6 )
+texture = ExtResource( 4 )
 region_enabled = true
-region_rect = Rect2( 482, 37, 63, 97 )
+region_rect = Rect2( 787, 3, 63, 97 )
 
 [node name="HurtArea" type="Area2D" parent="Sprite"]
 position = Vector2( 1, 31 )
@@ -344,7 +405,9 @@ disabled = true
 [node name="Collision2ndPunch" type="CollisionShape2D" parent="Sprite/HurtArea"]
 position = Vector2( 21.6912, -57.7319 )
 shape = SubResource( 24 )
-disabled = true
+
+[node name="SoundEffectStream" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="area_entered" from="Sprite/HurtArea" to="." method="_on_HurtArea_area_entered"]
