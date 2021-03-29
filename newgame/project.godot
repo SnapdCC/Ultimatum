@@ -17,11 +17,11 @@ _global_script_class_icons={
 
 config/name="lol"
 run/main_scene="res://Screens/MainScreen.tscn"
-config/icon="res://icon.png"
+config/icon="res://Misc/icon.png"
 
 [autoload]
 
-Pp="*res://PP.gd"
+Pp="*res://Misc/PP.gd"
 
 [display]
 
@@ -70,4 +70,4 @@ punch={
 
 quality/2d/use_pixel_snap=true
 environment/default_clear_color=Color( 0, 0, 0, 1 )
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://Misc/default_env.tres"

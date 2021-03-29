@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Limbo Ambience + music example.ogg-730dcc8d9e93b37988c8f5ff38f3db91.oggstr"
+
+[deps]
+
+source_file="res://Sounds/Music etc/Limbo Ambience + music example.ogg"
+dest_files=[ "res://.import/Limbo Ambience + music example.ogg-730dcc8d9e93b37988c8f5ff38f3db91.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
