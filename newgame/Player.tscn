@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://MaincharacterConcept.png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://PunchSpriteSheet.png" type="Texture" id=4]
 [ext_resource path="res://MaincharacteridleStance.png" type="Texture" id=5]
 [ext_resource path="res://MainCharacterLightSprite.png" type="Texture" id=6]
+[ext_resource path="res://HeavyAttack.png" type="Texture" id=7]
+[ext_resource path="res://dyingPlayercharacter.png" type="Texture" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 26.6944
@@ -92,6 +94,46 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="Animation" id=25]
+resource_name = "Death"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 52, 37, 45, 98 ), Rect2( 170, 49, 63, 82 ), Rect2( 296, 64, 93, 67 ), Rect2( 430, 105, 114, 28 ), Rect2( 592, 111, 115, 22 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( -1, -31 ), Vector2( -1, -25 ), Vector2( -1, -19 ), Vector2( -1, 0 ), Vector2( -1, 2 ) ]
+}
+
 [sub_resource type="Animation" id=19]
 resource_name = "Double Punch"
 length = 0.3
@@ -154,6 +196,46 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "Heavy Attack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 215, 27, 57, 97 ), Rect2( 370, 26, 85, 98 ), Rect2( 521, 23, 64, 103 ), Rect2( 215, 27, 57, 97 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( -1, -31 ) ]
 }
 
 [sub_resource type="Animation" id=20]
@@ -320,16 +402,18 @@ frames = SubResource( 18 )
 animation = "Punch"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Death = SubResource( 25 )
 "anims/Double Punch" = SubResource( 19 )
+"anims/Heavy Attack" = SubResource( 26 )
 anims/Idle = SubResource( 20 )
 anims/Punch = SubResource( 21 )
 anims/Walk = SubResource( 22 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -1, -31 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 region_enabled = true
-region_rect = Rect2( 482, 37, 63, 97 )
+region_rect = Rect2( 215, 27, 57, 97 )
 
 [node name="HurtArea" type="Area2D" parent="Sprite"]
 position = Vector2( 1, 31 )

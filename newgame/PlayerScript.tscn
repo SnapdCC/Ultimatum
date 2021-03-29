@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Stage_Background.png" type="Texture" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://skeleton.png" type="Texture" id=3]
 [ext_resource path="res://Skeleton.gd" type="Script" id=4]
+[ext_resource path="res://LimboMusicPlayer.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6.46372, 152.839 )
@@ -22,6 +23,8 @@ height = 30.8419
 
 [node name="Main" type="Node2D"]
 scale = Vector2( 2.56, 2.4 )
+
+[node name="AudioStreamPlayer" parent="." instance=ExtResource( 5 )]
 
 [node name="Panel" type="Panel" parent="."]
 margin_right = 40.0
@@ -95,22 +98,22 @@ polygon = PoolVector2Array( 523.748, 204.551, 558.75, 204.904, 569.003, 206.319,
 [node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="ViewportContainer/Viewport/BackgroundColliders"]
 polygon = PoolVector2Array( 527.422, 279.462, 560.18, 281.667, 617.507, 292.376, 698.457, 287.022, 700.976, 291.116, 713.261, 293.006, 728.065, 284.817, 754.523, 286.392, 769.327, 289.856, 777.517, 293.636, 792.636, 293.321, 830.433, 284.817, 847.757, 290.171, 865.396, 297.416, 893.744, 300.566, 520.493, 301.511 )
 
-[node name="Skeleton" type="KinematicBody2D" parent="ViewportContainer/Viewport"]
+[node name="Husk" type="KinematicBody2D" parent="ViewportContainer/Viewport"]
 position = Vector2( 631, 242 )
 script = ExtResource( 4 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="ViewportContainer/Viewport/Skeleton"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="ViewportContainer/Viewport/Husk"]
 position = Vector2( -4, -30 )
 scale = Vector2( -1, 1 )
 frames = SubResource( 2 )
 
-[node name="Area2D" type="Area2D" parent="ViewportContainer/Viewport/Skeleton"]
+[node name="Area2D" type="Area2D" parent="ViewportContainer/Viewport/Husk"]
 position = Vector2( 2.83167, -28.2245 )
 collision_layer = 2
 collision_mask = 2
 
-[node name="Skeleton_Hurtbox" type="CollisionShape2D" parent="ViewportContainer/Viewport/Skeleton/Area2D"]
+[node name="Skeleton_Hurtbox" type="CollisionShape2D" parent="ViewportContainer/Viewport/Husk/Area2D"]
 position = Vector2( -0.943848, -2.8316 )
 shape = SubResource( 3 )
 
-[node name="enemy" type="Node" parent="ViewportContainer/Viewport/Skeleton"]
+[node name="enemy" type="Node" parent="ViewportContainer/Viewport/Husk"]
