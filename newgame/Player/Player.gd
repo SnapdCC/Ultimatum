@@ -118,4 +118,12 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 # area for hits
 func _on_HurtArea_area_entered(area):
 	if (area.get_parent().get_node_or_null("enemy") != null):
+		var charHurt = area.get_parent()
+		
+		charHurt.stunHit(3, 7)
+		
 		print(area.get_parent().name)
+
+
+func _on_Area2D_area_entered(area):
+	pass # Replace with function body.

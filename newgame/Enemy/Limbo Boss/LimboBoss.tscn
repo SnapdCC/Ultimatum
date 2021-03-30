@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Enemy/Limbo Boss/hurtLimboSpriteSheet.png" type="Texture" id=1]
 [ext_resource path="res://Enemy/Limbo Boss/IdleLimbo.png" type="Texture" id=2]
@@ -11,9 +11,6 @@
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 25.8185
 height = 87.5644
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 21.2431, 7.55626 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "Death"
@@ -260,21 +257,19 @@ tracks/2/keys = {
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 22.333, 10 )
 
-[node name="LimboBoss" type="KinematicBody2D"]
+[node name="LimboBoss" type="Node2D"]
 script = ExtResource( 7 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="LimboHitbox" type="Area2D" parent="."]
 position = Vector2( 0.840881, -74.1471 )
+collision_layer = 2
+collision_mask = 2
 
-[node name="Hitbox" type="CollisionShape2D" parent="Area2D"]
+[node name="Hitbox" type="CollisionShape2D" parent="LimboHitbox"]
 shape = SubResource( 1 )
 
-[node name="Collision2D" type="CollisionShape2D" parent="Area2D"]
+[node name="Collision2D" type="CollisionShape2D" parent="LimboHitbox"]
 shape = SubResource( 1 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -7.69327 )
-shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Death = SubResource( 3 )
@@ -286,13 +281,16 @@ anims/Walk = SubResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -78 )
-texture = ExtResource( 4 )
+texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 424, 45, 76, 153 )
+region_rect = Rect2( 42, 17, 72, 156 )
 
 [node name="HurtAreaLimboPunch" type="Area2D" parent="Sprite"]
 
 [node name="PunchShape" type="CollisionShape2D" parent="Sprite/HurtAreaLimboPunch"]
 position = Vector2( 17.818, -17.3725 )
 shape = SubResource( 9 )
+
+[node name="enemy" type="Node" parent="."]
+[connection signal="area_entered" from="LimboHitbox" to="." method="_on_LimboHitbox_area_entered"]
 [connection signal="area_entered" from="Sprite/HurtAreaLimboPunch" to="." method="_on_HurtAreaLimboPunch_area_entered"]

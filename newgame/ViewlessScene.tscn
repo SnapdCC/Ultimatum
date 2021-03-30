@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Stage_Background.png" type="Texture" id=1]
 [ext_resource path="res://Misc/healthBarUnder.png" type="Texture" id=2]
@@ -9,6 +9,8 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6.46372, 152.839 )
+
+[sub_resource type="NavigationPolygon" id=2]
 
 [node name="Node2D" type="Node2D"]
 
@@ -66,10 +68,6 @@ polygon = PoolVector2Array( 523.748, 204.551, 558.75, 204.904, 569.003, 206.319,
 [node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="BackgroundColliders"]
 polygon = PoolVector2Array( 527.422, 279.462, 560.18, 281.667, 617.507, 292.376, 698.457, 287.022, 700.976, 291.116, 713.261, 293.006, 728.065, 284.817, 754.523, 286.392, 769.327, 289.856, 777.517, 293.636, 792.636, 293.321, 830.433, 284.817, 847.757, 290.171, 865.396, 297.416, 893.744, 300.566, 520.493, 301.511 )
 
-[node name="LimboBoss" parent="BackgroundColliders" instance=ExtResource( 3 )]
-position = Vector2( 558.337, 252.152 )
-scale = Vector2( -0.879994, 0.832185 )
-
 [node name="ForegroundTrees" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.6 )
 position = Vector2( 445.646, 150.329 )
@@ -77,25 +75,31 @@ scale = Vector2( 1.04745, 1.03845 )
 z_index = 2
 texture = ExtResource( 6 )
 
-[node name="BossMovementArea" type="Area2D" parent="."]
+[node name="LimboBoss" parent="." instance=ExtResource( 3 )]
+position = Vector2( 557.337, 252.152 )
+rotation = 3.14159
+scale = Vector2( 0.879994, -0.832185 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BossMovementArea"]
-visible = false
-polygon = PoolVector2Array( 12.4342, 207.881, 23.5761, 220.705, 13.0649, 219.444, 12.4342, 292.391, 59.9448, 287.136, 120.7, 293.442, 172.835, 285.664, 199.534, 292.812, 232.118, 286.926, 253.771, 290.71, 318.731, 286.085, 352.577, 295.124, 402.82, 285.244, 412.07, 289.448, 461.473, 287.977, 503.097, 280.409, 558.386, 281.46, 621.453, 292.391, 698.396, 287.136, 701.128, 291.13, 712.481, 292.181, 728.668, 285.244, 753.685, 285.454, 770.082, 289.658, 776.599, 294.283, 794.047, 292.812, 831.467, 284.613, 866.785, 298.067, 886.336, 299.539, 886.546, 209.353, 837.143, 208.932, 823.269, 211.455, 818.854, 224.489, 795.729, 225.12, 785.218, 222.597, 781.224, 209.773, 751.582, 205.779, 748.008, 224.069, 738.128, 230.165, 705.543, 228.693, 701.759, 205.148, 604.425, 205.148, 598.539, 221.546, 567.846, 225.54, 557.545, 219.444, 547.455, 205.779, 483.757, 207.461, 483.336, 221.125, 476.609, 224.699, 452.854, 223.648, 443.604, 212.927, 427.206, 212.506, 372.758, 204.097, 347.111, 204.308, 342.486, 221.336, 337.231, 224.069, 310.112, 221.546, 305.277, 209.143, 294.345, 204.308, 274.163, 212.716, 260.289, 211.455, 245.993, 224.489, 219.926, 225.33, 213.409, 220.074, 207.102, 206.2, 171.364, 205.569, 111.66, 209.353, 90.6377, 209.143, 68.9846, 203.677, 28.8318, 206.62 )
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
+navpoly = SubResource( 2 )
 
-[node name="ZeraHealth" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ZeraHealth" type="Control" parent="CanvasLayer"]
+margin_left = -268.761
+margin_top = -4.75682
+margin_right = -228.761
+margin_bottom = 35.2432
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HealthBar" type="TextureProgress" parent="ZeraHealth"]
+[node name="HealthBar" type="TextureProgress" parent="CanvasLayer/ZeraHealth"]
 margin_left = 293.864
 margin_top = 19.799
 margin_right = 893.864
 margin_bottom = 93.799
-rect_scale = Vector2( 0.359999, 0.32 )
+rect_scale = Vector2( 0.162328, 0.0641034 )
 value = 50.0
 texture_under = ExtResource( 2 )
 texture_progress = ExtResource( 4 )
@@ -103,3 +107,21 @@ tint_progress = Color( 1, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="BossHealth" type="Control" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="TextureProgress" parent="CanvasLayer/BossHealth"]
+margin_left = 352.6
+margin_top = 12.4867
+margin_right = 952.6
+margin_bottom = 86.4867
+rect_scale = Vector2( 0.2, 0.0800001 )
+value = 100.0
+texture_under = ExtResource( 2 )
+texture_progress = ExtResource( 4 )
+tint_progress = Color( 0, 0, 1, 1 )
