@@ -53,7 +53,6 @@ func _physics_process(delta):
 	if (Input.is_action_just_pressed("kick") and !isDoubleHitActive and !isPunching):
 		if (isPunching):
 			isPunching = false
-		
 		isKicking = true
 		tempAnim = "Heavy Attack"
 		
