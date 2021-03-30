@@ -6,6 +6,7 @@ var screen_size
 
 var health = 50
 
+var isPunching = false
 var canDoubleHit = false
 var isDoubleHitActive = false
 var isKicking = false
@@ -22,11 +23,6 @@ var tempAnim
 var anim_new
 onready var animationPlayer = $AnimationPlayer
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-var isPunching = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -58,7 +54,11 @@ func _physics_process(delta):
 		isKicking = true
 		tempAnim = "Heavy Attack"
 		
-	if (!isPunching and !isKicking):
+	if (Input.is_action_just_pressed("guard")):
+		isGuarding = true
+		tempAnim = "Guard"
+		
+	if (!isPunching and !isKicking and !isGuarding):
 		if Input.is_action_pressed("ui_right"):
 			velocity.x += 1
 		if Input.is_action_pressed("ui_left"):
@@ -110,6 +110,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		isDoubleHitActive = false
 	elif (anim_name == "Heavy Attack"):
 		isKicking = false
+	elif (anim_name == "Guard"):
+		isGuarding = false
 
 # area for hits
 func _on_HurtArea_area_entered(area):
