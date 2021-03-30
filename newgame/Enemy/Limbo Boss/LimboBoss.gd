@@ -1,4 +1,4 @@
-extends Node2D
+extends KinematicBody2D
 
 onready var animationPlayer = $AnimationPlayer
 onready var bossHealth = $"../CanvasLayer/BossHealth/HealthBar"
@@ -7,12 +7,30 @@ var health = 200.0
 
 var tempAnim
 var anim_new
+var isWalking = false
+var alive = true
+
+onready var playerPosition = get_parent().get_node("Player")
+var bossSpeed = 25
+onready var bossPosition = get_parent().get_node("LimboBoss")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	bossHealth.value = (health / maxHealth) * 100
-	tempAnim = "Idle"
+	if (!isWalking):
+		tempAnim = "Idle"
 	animationSwapper(tempAnim)
+
+func _physics_process(delta):
+	if(alive):
+		if (playerPosition.position.x > position.x):
+			$Sprite.scale.x = -1
+		else:
+			$Sprite.scale.x = 1
+		isWalking = true
+		move_and_slide((playerPosition.position - (bossPosition.position - Vector2(0, 20))).normalized() * bossSpeed)
+		tempAnim = "Walk"
 
 
 func animationSwapper(anim):
@@ -35,3 +53,5 @@ func stunHit(damageTake, stunFrame):
 
 	if (health <= 0):
 		animationPlayer.play("Death")
+		alive  = false
+		
