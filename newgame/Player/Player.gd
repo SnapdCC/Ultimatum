@@ -4,6 +4,8 @@ signal walls
 export var speed = 220
 var screen_size
 
+var health = 50
+
 var canDoubleHit = false
 var isDoubleHitActive = false
 
