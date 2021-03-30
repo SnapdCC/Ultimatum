@@ -4,7 +4,9 @@ signal walls
 export var speed = 220
 var screen_size
 
-var health = 50
+var health = 100
+var maxHealth = 100
+onready var zeraHealth = $"../CanvasLayer/ZeraHealth/HealthBar"
 
 var isPunching = false
 var canDoubleHit = false
@@ -27,10 +29,12 @@ onready var animationPlayer = $AnimationPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
+	zeraHealth.value = (health / maxHealth) * 100
 	
 func _physics_process(delta):
 	self.z_index = self.position.y
-	var velocity = Vector2()
+	var velocity = Vector2.ZERO
+	
 
 # watches for specific frames to see when one can input punch a second time to make the double punch
 	if ($Sprite.texture == moveFrameArray[0][0]):
@@ -85,8 +89,6 @@ func _physics_process(delta):
 			else:
 				$Sprite.scale.x = -1
 	
-	
-	
 	velocity = move_and_slide(velocity * speed)
 	
 	#Checking on every frame, not every key
@@ -115,7 +117,20 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	elif (anim_name == "Guard"):
 		isGuarding = false
 
+func stunHit(damageTake, stunFrame):
+	health -= 3
+	print(health / maxHealth)
+	zeraHealth.value = (health / maxHealth) * 100
+
 # area for hits
 func _on_HurtArea_area_entered(area):
 	if (area.get_parent().get_node_or_null("enemy") != null):
+		var charHurt = area.get_parent()
+		
+		charHurt.stunHit(5, 7)
+		
 		print(area.get_parent().name)
+
+
+func _on_Area2D_area_entered(area):
+	pass # Replace with function body.
