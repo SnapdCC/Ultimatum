@@ -33,5 +33,5 @@ func stunHit(damageTake, stunFrame):
 	bossHealth.value = (health / maxHealth) * 100
 	
 
-	if (health == 0):
+	if (health <= 0):
 		animationPlayer.play("Death")
