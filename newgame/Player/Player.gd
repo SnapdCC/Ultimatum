@@ -8,8 +8,8 @@ var health = 50
 
 var canDoubleHit = false
 var isDoubleHitActive = false
-
 var isKicking = false
+var isGuarding = false
 
 var holder
 var facing_right
