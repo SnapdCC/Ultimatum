@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://User Interface/Pause.gd" type="Script" id=1]
+
+[node name="Pause" type="Control"]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScreenMargins" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 260
+custom_constants/margin_top = 80
+custom_constants/margin_left = 260
+custom_constants/margin_bottom = 80
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Overlay" type="ColorRect" parent="ScreenMargins"]
+margin_left = 260.0
+margin_top = 80.0
+margin_right = 1020.0
+margin_bottom = 640.0
+color = Color( 0.160784, 0.160784, 0.160784, 1 )
