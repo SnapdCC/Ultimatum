@@ -48,13 +48,16 @@ func _physics_process(delta):
 		canDoubleHit = false
 
 # watches for punch and if double punch is available
-	if (Input.is_action_just_pressed("punch") and !isDoubleHitActive):
+	if (Input.is_action_just_pressed("punch") and !isDoubleHitActive and !isKicking):
 		canDoubleHit = true
 		isPunching = true
 		tempAnim = "Punch"
 		
 		#plays kick animation and attack
-	if (Input.is_action_just_pressed("kick")):
+	if (Input.is_action_just_pressed("kick") and !isDoubleHitActive and !isPunching):
+		if (isPunching):
+			isPunching = false
+		
 		isKicking = true
 		tempAnim = "Heavy Attack"
 		
