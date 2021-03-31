@@ -80,7 +80,12 @@ position = Vector2( 557.337, 252.152 )
 rotation = 3.14159
 scale = Vector2( 0.879994, -0.832185 )
 
-[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
+[node name="Navigation2D" type="Navigation2D" parent="LimboBoss"]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="LimboBoss/Navigation2D"]
+position = Vector2( 633.342, -303 )
+rotation = -3.14159
+scale = Vector2( 1.13637, -1.20166 )
 navpoly = SubResource( 2 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

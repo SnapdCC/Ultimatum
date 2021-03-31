@@ -12,7 +12,7 @@
 radius = 25.8185
 height = 87.5644
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "Death"
 length = 1.2
 tracks/0/type = "value"
@@ -52,7 +52,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -80 ), Vector2( 0, -76 ), Vector2( 0, -70 ), Vector2( 0, -54 ), Vector2( 0, -32 ), Vector2( 0, -25 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "Hurt"
 length = 0.4
 tracks/0/type = "value"
@@ -92,7 +92,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -78 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "Idle"
 length = 0.6
 loop = true
@@ -133,7 +133,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -78 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "Punch"
 length = 0.7
 tracks/0/type = "value"
@@ -173,7 +173,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -78 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 resource_name = "Taunt"
 length = 2.0
 tracks/0/type = "value"
@@ -213,7 +213,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -79 ), Vector2( 0, -79 ), Vector2( 0, -79 ), Vector2( 0, -79 ), Vector2( 0, -79 ), Vector2( 0, -85 ), Vector2( 0, -97 ), Vector2( 0, -85 ), Vector2( 0, -97 ), Vector2( 0, -85 ), Vector2( 0, -85 ), Vector2( 0, -97 ), Vector2( 0, -105 ), Vector2( 0, -103 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=7]
 resource_name = "Walk"
 length = 1.4
 loop = true
@@ -254,10 +254,10 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -78 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 22.333, 10 )
 
-[node name="LimboBoss" type="Node2D"]
+[node name="LimboBoss" type="KinematicBody2D"]
 script = ExtResource( 7 )
 
 [node name="LimboHitbox" type="Area2D" parent="."]
@@ -272,25 +272,26 @@ shape = SubResource( 1 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Death = SubResource( 3 )
-anims/Hurt = SubResource( 4 )
-anims/Idle = SubResource( 5 )
-anims/Punch = SubResource( 6 )
-anims/Taunt = SubResource( 7 )
-anims/Walk = SubResource( 8 )
+anims/Death = SubResource( 2 )
+anims/Hurt = SubResource( 3 )
+anims/Idle = SubResource( 4 )
+anims/Punch = SubResource( 5 )
+anims/Taunt = SubResource( 6 )
+anims/Walk = SubResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -78 )
-texture = ExtResource( 2 )
+position = Vector2( 0, -80 )
+texture = ExtResource( 6 )
 region_enabled = true
-region_rect = Rect2( 42, 17, 72, 156 )
+region_rect = Rect2( 33, 35, 61, 165 )
 
 [node name="HurtAreaLimboPunch" type="Area2D" parent="Sprite"]
 
 [node name="PunchShape" type="CollisionShape2D" parent="Sprite/HurtAreaLimboPunch"]
 position = Vector2( 17.818, -17.3725 )
-shape = SubResource( 9 )
+shape = SubResource( 8 )
 
 [node name="enemy" type="Node" parent="."]
 [connection signal="area_entered" from="LimboHitbox" to="." method="_on_LimboHitbox_area_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="area_entered" from="Sprite/HurtAreaLimboPunch" to="." method="_on_HurtAreaLimboPunch_area_entered"]
