@@ -18,7 +18,7 @@ onready var bossPosition = get_parent().get_node("LimboBoss")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	bossHealth.value = (health / maxHealth) * 100
+	bossHealth = (health / maxHealth) * 100
 	if (!isWalking and alive):
 		tempAnim = "Idle"
 
