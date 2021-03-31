@@ -31,12 +31,8 @@ func _physics_process(delta):
 			$Sprite.scale.x = 1
 		move_and_slide((playerPosition.position - (bossPosition.position - Vector2(0, 20))).normalized() * bossSpeed)
 		tempAnim = "Walk"
-	else:
-		if (dontLoop):
-			animationPlayer.stop()
-			animationPlayer.play("Death")
-
-	animationSwapper(tempAnim)
+		
+		animationSwapper(tempAnim)
 
 func animationSwapper(anim):
 	anim_new = anim
@@ -50,9 +46,13 @@ func _on_HurtAreaLimboPunch_area_entered(area):
 
 func _on_LimboHitbox_area_entered(area):
 	pass # Replace with function body.
+	
+func bossDie():
+	animationPlayer.stop()
+	animationPlayer.play("Death")
 
 func stunHit(damageTake, stunFrame):
-	health -= 5
+	health -= damageTake
 	print(health / maxHealth)
 	bossHealth.value = (health / maxHealth) * 100
 
@@ -60,4 +60,8 @@ func stunHit(damageTake, stunFrame):
 		isWalking = false
 		alive  = false
 		dontLoop = true
-		
+		bossDie()
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if (anim_name == "Death"):
+		queue_free()
