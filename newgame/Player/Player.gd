@@ -36,6 +36,7 @@ func _physics_process(delta):
 	var velocity = Vector2.ZERO
 	
 
+
 # watches for specific frames to see when one can input punch a second time to make the double punch
 	if ($Sprite.texture == moveFrameArray[0][0]):
 		if ($Sprite.region_rect == moveFrameArray[0][1] or $Sprite.region_rect == moveFrameArray[0][2]):
