@@ -29,12 +29,13 @@ onready var animationPlayer = $AnimationPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
-	zeraHealth.value = (health / maxHealth) * 100
+	zeraHealth = (health / maxHealth) * 100
 	
 func _physics_process(delta):
 	self.z_index = self.position.y
 	var velocity = Vector2.ZERO
 	
+
 
 # watches for specific frames to see when one can input punch a second time to make the double punch
 	if ($Sprite.texture == moveFrameArray[0][0]):
@@ -75,7 +76,7 @@ func _physics_process(delta):
 			velocity.y -= 1
 		if velocity != Vector2.ZERO:
 			tempAnim = "Walk"
-			if (velocity.x < 0.1):
+			if (velocity.x < -0.1):
 				facing_right = false
 				$Sprite.scale.x = -1
 			elif (velocity.x > 0.1):
