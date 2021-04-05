@@ -53,7 +53,7 @@ func bossDie():
 func stunHit(damageTake, stunFrame):
 	health -= damageTake
 	print(health / maxHealth)
-	bossHealth = (health / maxHealth) * 100
+	bossHealth = ((health / maxHealth) * 100.0)
 
 	if (health <= 0):
 		isWalking = false

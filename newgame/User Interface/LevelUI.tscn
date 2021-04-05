@@ -1,52 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://User Interface/PauseMenu.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Misc/healthBarProgress.png" type="Texture" id=3]
-[ext_resource path="res://Misc/healthBarUnder.png" type="Texture" id=4]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 pause_mode = 2
-
-[node name="ZeraHealth" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HealthBar" type="TextureProgress" parent="ZeraHealth"]
-margin_left = 20.0
-margin_top = 10.0
-margin_right = 620.0
-margin_bottom = 84.0
-rect_scale = Vector2( 0.162328, 0.0641034 )
-value = 50.0
-texture_under = ExtResource( 4 )
-texture_progress = ExtResource( 3 )
-tint_progress = Color( 1, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="BossHealth" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HealthBar" type="TextureProgress" parent="BossHealth"]
-margin_left = 352.6
-margin_top = 10.0
-margin_right = 952.6
-margin_bottom = 84.0
-rect_scale = Vector2( 0.2, 0.0800001 )
-value = 100.0
-texture_under = ExtResource( 4 )
-texture_progress = ExtResource( 3 )
-tint_progress = Color( 0, 0, 1, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Pause" parent="." instance=ExtResource( 2 )]
