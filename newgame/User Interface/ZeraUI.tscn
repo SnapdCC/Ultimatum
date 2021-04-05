@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Misc/healthBarUnder.png" type="Texture" id=1]
+[ext_resource path="res://Misc/healthBarProgress.png" type="Texture" id=2]
+[ext_resource path="res://User Interface/UI Elements/Portrait.png" type="Texture" id=3]
+[ext_resource path="res://User Interface/UI Elements/Name.png" type="Texture" id=4]
+[ext_resource path="res://User Interface/UI Elements/Frame.png" type="Texture" id=5]
+
+[node name="ZeraUI" type="Control"]
+margin_left = 10.0
+margin_top = 15.0
+margin_right = 50.0
+margin_bottom = 55.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Frame" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="TextureProgress" parent="Frame"]
+margin_left = 32.8828
+margin_top = 35.8449
+margin_right = 632.883
+margin_bottom = 109.845
+rect_scale = Vector2( 0.310846, 0.0641034 )
+value = 50.0
+texture_under = ExtResource( 1 )
+texture_progress = ExtResource( 2 )
+tint_progress = Color( 1, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ZeraIcon" type="TextureRect" parent="Frame"]
+margin_left = 3.7755
+margin_top = 3.30356
+margin_right = 43.7755
+margin_bottom = 43.3036
+texture = ExtResource( 3 )
+
+[node name="ZeraName" type="TextureRect" parent="Frame"]
+margin_left = 43.4182
+margin_top = 2.35969
+margin_right = 127.418
+margin_bottom = 42.3597
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

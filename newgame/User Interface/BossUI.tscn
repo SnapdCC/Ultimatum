@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Misc/healthBarUnder.png" type="Texture" id=1]
+[ext_resource path="res://Misc/healthBarProgress.png" type="Texture" id=2]
+[ext_resource path="res://User Interface/UI Elements/BossFrame.png" type="Texture" id=3]
+
+[node name="BossUI" type="Control"]
+margin_left = 265.0
+margin_top = 15.0
+margin_right = 487.0
+margin_bottom = 59.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BossFrame" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 3 )
+
+[node name="HealthBar" type="TextureProgress" parent="BossFrame"]
+anchor_top = 0.762
+anchor_bottom = 0.762
+margin_left = 2.89465
+margin_top = 3.40685
+margin_right = 602.895
+margin_bottom = 77.4069
+rect_scale = Vector2( 0.311, 0.064 )
+value = 100.0
+texture_under = ExtResource( 1 )
+texture_progress = ExtResource( 2 )
+fill_mode = 1
+tint_progress = Color( 0, 0, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BossName" type="TextureRect" parent="BossFrame"]
+margin_left = 93.1643
+margin_top = 1.12247
+margin_right = 133.164
+margin_bottom = 41.1225
+
+[node name="BossPortrait" type="TextureRect" parent="BossFrame"]
+margin_left = 180.436
+margin_top = 1.68369
+margin_right = 220.436
+margin_bottom = 41.6837

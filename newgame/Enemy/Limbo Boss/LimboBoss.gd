@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 onready var animationPlayer = $AnimationPlayer
-onready var bossHealth = get_node("../CanvasLayer/BossHealth/HealthBar")
+onready var bossHealth = get_node("../CanvasLayer/BossUI/BossFrame/HealthBar")
 var maxHealth = 200.0
 var health = 200.0
 
