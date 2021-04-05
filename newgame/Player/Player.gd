@@ -14,6 +14,8 @@ var isDoubleHitActive = false
 var isKicking = false
 var isGuarding = false
 
+var beginning = Dialogic.start('beginning')
+
 var holder
 var facing_right
 var moveFrameArray = [

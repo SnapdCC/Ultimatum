@@ -39,7 +39,6 @@ func animationSwapper(anim):
 	animationPlayer.play(anim)
 	
 
-
 func _on_HurtAreaLimboPunch_area_entered(area):
 	pass # Replace with function body.
 
@@ -54,7 +53,7 @@ func bossDie():
 func stunHit(damageTake, stunFrame):
 	health -= damageTake
 	print(health / maxHealth)
-	bossHealth.value = (health / maxHealth) * 100
+	bossHealth = (health / maxHealth) * 100
 
 	if (health <= 0):
 		isWalking = false

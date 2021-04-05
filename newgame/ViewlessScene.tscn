@@ -92,6 +92,7 @@ navpoly = SubResource( 2 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ZeraHealth" type="Control" parent="CanvasLayer"]
+visible = false
 margin_left = -268.761
 margin_top = -4.75682
 margin_right = -228.761
@@ -101,6 +102,7 @@ __meta__ = {
 }
 
 [node name="HealthBar" type="TextureProgress" parent="CanvasLayer/ZeraHealth"]
+visible = false
 margin_left = 293.864
 margin_top = 19.799
 margin_right = 893.864
@@ -115,6 +117,7 @@ __meta__ = {
 }
 
 [node name="BossHealth" type="Control" parent="CanvasLayer"]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
@@ -122,6 +125,7 @@ __meta__ = {
 }
 
 [node name="HealthBar" type="TextureProgress" parent="CanvasLayer/BossHealth"]
+visible = false
 margin_left = 352.6
 margin_top = 12.4867
 margin_right = 952.6
