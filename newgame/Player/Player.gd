@@ -6,7 +6,7 @@ var screen_size
 
 var health = 100
 var maxHealth = 100
-onready var zeraHealth = $"../CanvasLayer/ZeraHealth/HealthBar"
+onready var zeraHealth = get_node("../CanvasLayer/ZeraUI/Frame/HealthBar")
 
 var isPunching = false
 var canDoubleHit = false
@@ -31,7 +31,7 @@ onready var animationPlayer = $AnimationPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
-	zeraHealth = (health / maxHealth) * 100
+	zeraHealth.value = (health / maxHealth) * 100.0
 	
 func _physics_process(delta):
 	self.z_index = self.position.y
@@ -123,7 +123,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 func stunHit(damageTake, stunFrame):
 	health -= 3
 	print(health / maxHealth)
-	zeraHealth.value = (health / maxHealth) * 100
+	zeraHealth.value = (health / maxHealth) * 100.0
 
 # area for hits
 func _on_HurtArea_area_entered(area):
