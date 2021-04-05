@@ -117,7 +117,6 @@ __meta__ = {
 }
 
 [node name="BossHealth" type="Control" parent="CanvasLayer"]
-visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
@@ -125,7 +124,6 @@ __meta__ = {
 }
 
 [node name="HealthBar" type="TextureProgress" parent="CanvasLayer/BossHealth"]
-visible = false
 margin_left = 352.6
 margin_top = 12.4867
 margin_right = 952.6
