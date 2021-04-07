@@ -4,8 +4,8 @@ signal walls
 export var speed = 220
 var screen_size
 
-var health = 100
-var maxHealth = 100
+var health = 100.0
+var maxHealth = 100.0
 onready var zeraHealth = get_node("../CanvasLayer/ZeraUI/Frame/HealthBar")
 
 var isPunching = false
@@ -13,6 +13,7 @@ var canDoubleHit = false
 var isDoubleHitActive = false
 var isKicking = false
 var isGuarding = false
+var isDead = false
 
 var beginning = Dialogic.start('beginning')
 
@@ -42,7 +43,7 @@ func _physics_process(delta):
 # watches for specific frames to see when one can input punch a second time to make the double punch
 	if ($Sprite.texture == moveFrameArray[0][0]):
 		if ($Sprite.region_rect == moveFrameArray[0][1] or $Sprite.region_rect == moveFrameArray[0][2]):
-			if (Input.is_action_just_pressed("punch") and canDoubleHit):
+			if (Input.is_action_just_pressed("punch") and canDoubleHit and !isDead):
 				isDoubleHitActive = true
 				anim_new = "Double Punch"
 				canDoubleHit = false
@@ -51,23 +52,23 @@ func _physics_process(delta):
 		canDoubleHit = false
 
 # watches for punch and if double punch is available
-	if (Input.is_action_just_pressed("punch") and !isDoubleHitActive and !isKicking):
+	if (Input.is_action_just_pressed("punch") and !isDoubleHitActive and !isKicking and !isGuarding and !isDead):
 		canDoubleHit = true
 		isPunching = true
 		tempAnim = "Punch"
 		
 		#plays kick animation and attack
-	if (Input.is_action_just_pressed("kick") and !isDoubleHitActive and !isPunching):
+	if (Input.is_action_just_pressed("kick") and !isDoubleHitActive and !isPunching and !isGuarding and !isDead):
 		if (isPunching):
 			isPunching = false
 		isKicking = true
 		tempAnim = "Heavy Attack"
 		
-	if (Input.is_action_just_pressed("guard")):
+	if (Input.is_action_just_pressed("guard") and !isPunching and !isKicking and !isDead):
 		isGuarding = true
 		tempAnim = "Guard"
 		
-	if (!isPunching and !isKicking and !isGuarding):
+	if (!isPunching and !isKicking and !isGuarding and !isDead):
 		if Input.is_action_pressed("ui_right"):
 			velocity.x += 1
 		if Input.is_action_pressed("ui_left"):
@@ -103,6 +104,12 @@ func animationSwapper(anim):
 		anim_new = anim
 		animationPlayer.play(anim)
 
+func playerDeath():
+	animationPlayer.stop()
+	animationPlayer.play("Death")
+	isDead = true
+	
+
 #double punch playing function
 func doubleHitPlay():
 	animationPlayer.stop()
@@ -121,9 +128,13 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		isGuarding = false
 
 func stunHit(damageTake, stunFrame):
-	health -= 3
+	health -= 25
 	print(health / maxHealth)
 	zeraHealth.value = (health / maxHealth) * 100.0
+	
+	if (health <= 0):
+		isDead = true
+		playerDeath()
 
 # area for hits
 func _on_HurtArea_area_entered(area):

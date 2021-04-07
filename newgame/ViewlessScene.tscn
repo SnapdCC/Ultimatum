@@ -94,10 +94,8 @@ navpoly = SubResource( 2 )
 [node name="ZeraUI" parent="CanvasLayer" instance=ExtResource( 8 )]
 
 [node name="BossUI" parent="CanvasLayer" instance=ExtResource( 2 )]
-margin_left = 277.728
-margin_top = 14.2929
-margin_right = 499.728
-margin_bottom = 58.2929
+margin_left = 273.485
+margin_right = 495.485
 
 [node name="Dialogic" type="Node" parent="."]
 script = ExtResource( 7 )

@@ -172,6 +172,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [ Vector2( 0, -78 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/HurtAreaLimboPunch/PunchShape:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "Taunt"
@@ -280,18 +292,23 @@ anims/Taunt = SubResource( 6 )
 anims/Walk = SubResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -80 )
-texture = ExtResource( 6 )
+position = Vector2( 0, -78 )
+texture = ExtResource( 4 )
 region_enabled = true
-region_rect = Rect2( 33, 35, 61, 165 )
+region_rect = Rect2( 67, 42, 80, 158 )
 
 [node name="HurtAreaLimboPunch" type="Area2D" parent="Sprite"]
 
 [node name="PunchShape" type="CollisionShape2D" parent="Sprite/HurtAreaLimboPunch"]
-position = Vector2( 17.818, -17.3725 )
+position = Vector2( 19.5998, -17.3725 )
 shape = SubResource( 8 )
+disabled = true
+
+[node name="attackCooldown" type="Timer" parent="."]
+wait_time = 3.0
 
 [node name="enemy" type="Node" parent="."]
 [connection signal="area_entered" from="LimboHitbox" to="." method="_on_LimboHitbox_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="area_entered" from="Sprite/HurtAreaLimboPunch" to="." method="_on_HurtAreaLimboPunch_area_entered"]
+[connection signal="timeout" from="attackCooldown" to="." method="_on_attackCooldown_timeout"]
