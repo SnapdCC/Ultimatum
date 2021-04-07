@@ -574,9 +574,9 @@ anims/Walk = SubResource( 25 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -1, -31 )
-texture = ExtResource( 6 )
+texture = ExtResource( 12 )
 region_enabled = true
-region_rect = Rect2( 50, 30, 65, 100 )
+region_rect = Rect2( 11, 25, 65, 100 )
 
 [node name="HurtArea" type="Area2D" parent="Sprite"]
 position = Vector2( 1, 31 )
