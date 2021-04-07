@@ -141,7 +141,7 @@ func _on_HurtArea_area_entered(area):
 	if (area.get_parent().get_node_or_null("enemy") != null):
 		var charHurt = area.get_parent()
 		
-		charHurt.stunHit(50.0, 7.0)
+		charHurt.stunHit(50.0, 2.0)
 		
 		print(area.get_parent().name)
 

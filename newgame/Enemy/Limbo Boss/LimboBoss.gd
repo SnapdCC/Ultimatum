@@ -14,6 +14,9 @@ var canHit = true
 var isTaunting = false
 var isPunching = false
 var noWalk = false
+var inStun = false
+#var attackGenerator = RandomNumberGenerator.new()
+#var attackChoice = attackGenerator.ranf_range(1, 3)
 
 onready var playerPosition = get_parent().get_node("Player")
 var bossSpeed = 25
@@ -27,7 +30,7 @@ func _ready():
 		tempAnim = "Idle"
 
 func _physics_process(delta):
-	if(alive):
+	if(alive and !inStun):
 		isWalking = true
 		if (playerPosition.position.x > position.x):
 			$Sprite.scale.x = -1
@@ -52,7 +55,7 @@ func _physics_process(delta):
 				$attackCooldown.stop()
 				canHit = true
 	
-		animationSwapper(tempAnim)
+	animationSwapper(tempAnim)
 
 func animationSwapper(anim):
 	anim_new = anim
@@ -78,7 +81,7 @@ func _on_LimboHitbox_area_entered(area):
 	
 func bossDie():
 	animationPlayer.stop()
-	animationPlayer.play("Death")
+	tempAnim = "Death"
 
 func stunHit(damageTake, stunFrame):
 	health -= damageTake
@@ -86,10 +89,17 @@ func stunHit(damageTake, stunFrame):
 	bossHealth.value = (health / maxHealth) * 100.0
 		
 	if (health <= 0):
+		animationPlayer.playback_speed = 1
 		isWalking = false
+		inStun = false
 		alive  = false
 		dontLoop = true
 		bossDie()
+	else:
+		inStun = true
+		animationPlayer.playback_speed = 1 / stunFrame
+		tempAnim = "Hurt"
+		
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if (anim_name == "Punch"):
@@ -103,6 +113,10 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		
 	if (anim_name == "Taunt"):
 		isTaunting = false
+		
+	if (anim_name == "Hurt"):
+		animationPlayer.playback_speed = 1
+		inStun = false
 
 
 func _on_attackCooldown_timeout():
