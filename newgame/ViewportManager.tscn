@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Sounds/Music etc/LimboMusicPlayer.tscn" type="PackedScene" id=5]
+
+[node name="Main" type="Node2D"]
+pause_mode = 2
+scale = Vector2( 2.56, 2.4 )
+
+[node name="AudioStreamPlayer" parent="." instance=ExtResource( 5 )]
+pause_mode = 2
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+margin_right = 500.0
+margin_bottom = 300.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 500, 300 )
+handle_input_locally = false
+render_target_update_mode = 3
