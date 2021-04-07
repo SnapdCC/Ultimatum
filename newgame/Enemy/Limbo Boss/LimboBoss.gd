@@ -98,6 +98,10 @@ func stunHit(damageTake, stunFrame):
 	else:
 		inStun = true
 		animationPlayer.playback_speed = 1 / stunFrame
+		
+		if tempAnim == "Hurt":
+			animationPlayer.stop()
+		
 		tempAnim = "Hurt"
 		
 
