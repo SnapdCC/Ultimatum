@@ -67,7 +67,8 @@ func _on_HurtAreaLimboPunch_area_entered(area):
 			var charHurt = area.get_parent()
 			
 			
-			charHurt.stunHit(50.0, 5.0)
+			charHurt.stunHit(25.0, 0.5)
+			
 		
 			print(area.get_parent().name)
 			
@@ -87,6 +88,7 @@ func stunHit(damageTake, stunFrame):
 	health -= damageTake
 	print(health / maxHealth)
 	bossHealth.value = (health / maxHealth) * 100.0
+		
 		
 	if (health <= 0):
 		animationPlayer.playback_speed = 1

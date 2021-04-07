@@ -13,6 +13,7 @@ var canDoubleHit = false
 var isDoubleHitActive = false
 var isKicking = false
 var isGuarding = false
+var inStun = false
 var isDead = false
 
 var beginning = Dialogic.start('beginning')
@@ -52,23 +53,23 @@ func _physics_process(delta):
 		canDoubleHit = false
 
 # watches for punch and if double punch is available
-	if (Input.is_action_just_pressed("punch") and !isDoubleHitActive and !isKicking and !isGuarding and !isDead):
+	if (Input.is_action_just_pressed("punch") and !isDoubleHitActive and !isKicking and !isGuarding and !inStun and !isDead):
 		canDoubleHit = true
 		isPunching = true
 		tempAnim = "Punch"
 		
 		#plays kick animation and attack
-	if (Input.is_action_just_pressed("kick") and !isDoubleHitActive and !isPunching and !isGuarding and !isDead):
+	if (Input.is_action_just_pressed("kick") and !isDoubleHitActive and !isPunching and !isGuarding and !inStun and !isDead):
 		if (isPunching):
 			isPunching = false
 		isKicking = true
 		tempAnim = "Heavy Attack"
 		
-	if (Input.is_action_just_pressed("guard") and !isPunching and !isKicking and !isDead):
+	if (Input.is_action_just_pressed("guard") and !isPunching and !isKicking and !inStun and !isDead):
 		isGuarding = true
 		tempAnim = "Guard"
 		
-	if (!isPunching and !isKicking and !isGuarding and !isDead):
+	if (!isPunching and !isKicking and !isGuarding and !inStun and !isDead):
 		if Input.is_action_pressed("ui_right"):
 			velocity.x += 1
 		if Input.is_action_pressed("ui_left"):
@@ -126,15 +127,34 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		isKicking = false
 	elif (anim_name == "Guard"):
 		isGuarding = false
+	elif (anim_name == "Hurt"):
+		animationPlayer.playback_speed = 1
+		inStun = false
 
 func stunHit(damageTake, stunFrame):
-	health -= 25
+	
+	if (isGuarding):
+		health -= int(damageTake / 1.5)
+	else:
+		health -= damageTake
+		
 	print(health / maxHealth)
+	
 	zeraHealth.value = (health / maxHealth) * 100.0
 	
 	if (health <= 0):
+		animationPlayer.playback_speed = 1
 		isDead = true
 		playerDeath()
+	else:
+		if(!isGuarding):
+			inStun = true
+			animationPlayer.playback_speed = 1 / stunFrame
+		
+			if tempAnim == "Hurt":
+				animationPlayer.stop()
+		
+			tempAnim = "Hurt"
 
 # area for hits
 func _on_HurtArea_area_entered(area):
