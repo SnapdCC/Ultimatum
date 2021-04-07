@@ -11,6 +11,7 @@ var isWalking = false
 var alive = true
 var dontLoop = false
 var canHit = true
+var isTaunting = false
 var isPunching = false
 var noWalk = false
 
@@ -35,14 +36,15 @@ func _physics_process(delta):
 			
 		if ((bossPosition.position.x - playerPosition.position.x) <= 50 && (bossPosition.position.x - playerPosition.position.x) >= -50):
 			isWalking = false
-			if (canHit):
+			if (canHit and !isTaunting):
 				isPunching = true
 				tempAnim = "Punch"
 			else:
-				tempAnim = "Idle"
+				if (tempAnim != "Taunt"):
+					tempAnim = "Idle"
 			
 		else:
-			if (isPunching):
+			if (isPunching or isTaunting):
 				noWalk = true
 			if(!noWalk):
 				move_and_slide((playerPosition.position - (bossPosition.position - Vector2(0, 20))).normalized() * bossSpeed)
@@ -58,12 +60,17 @@ func animationSwapper(anim):
 	
 
 func _on_HurtAreaLimboPunch_area_entered(area):
-		if (area.get_parent().get_node_or_null("player") != null):
+		if ((area.get_parent().get_node_or_null("player") != null) and (playerPosition.health > 0)):
 			var charHurt = area.get_parent()
-		
+			
+			
 			charHurt.stunHit(50.0, 5.0)
 		
 			print(area.get_parent().name)
+			
+			if charHurt.health <= 0:
+				tempAnim = "Taunt"
+				isTaunting = true
 
 
 func _on_LimboHitbox_area_entered(area):
@@ -77,20 +84,12 @@ func stunHit(damageTake, stunFrame):
 	health -= damageTake
 	print(health / maxHealth)
 	bossHealth.value = (health / maxHealth) * 100.0
-	
-	if (playerPosition.isDead == true):
-		bossWin()
 		
-
 	if (health <= 0):
 		isWalking = false
 		alive  = false
 		dontLoop = true
 		bossDie()
-
-func bossWin():
-	animationPlayer.stop()
-	animationPlayer.play("Taunt") 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if (anim_name == "Punch"):
@@ -101,6 +100,9 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	
 	if (anim_name == "Death"):
 		queue_free()
+		
+	if (anim_name == "Taunt"):
+		isTaunting = false
 
 
 func _on_attackCooldown_timeout():
