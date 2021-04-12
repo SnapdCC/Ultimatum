@@ -574,9 +574,9 @@ anims/Walk = SubResource( 25 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -1, -31 )
-texture = ExtResource( 12 )
+texture = ExtResource( 7 )
 region_enabled = true
-region_rect = Rect2( 11, 25, 65, 100 )
+region_rect = Rect2( 787, 3, 63, 97 )
 
 [node name="HurtArea" type="Area2D" parent="Sprite"]
 position = Vector2( 1, 31 )
@@ -603,4 +603,5 @@ disabled = true
 [node name="player" type="Node" parent="."]
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
 [connection signal="area_entered" from="Sprite/HurtArea" to="." method="_on_HurtArea_area_entered"]

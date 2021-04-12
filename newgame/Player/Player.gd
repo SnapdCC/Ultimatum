@@ -134,7 +134,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 func stunHit(damageTake, stunFrame):
 	
 	if (isGuarding):
-		health -= int(damageTake / 1.5)
+		health -= (damageTake / 2)
 	else:
 		health -= damageTake
 		
@@ -151,8 +151,9 @@ func stunHit(damageTake, stunFrame):
 			inStun = true
 			animationPlayer.playback_speed = 1 / stunFrame
 		
-			if tempAnim == "Hurt":
-				animationPlayer.stop()
+			if (isPunching):
+				isPunching = false
+				tempAnim = "Hurt"
 		
 			tempAnim = "Hurt"
 
@@ -162,10 +163,14 @@ func _on_HurtArea_area_entered(area):
 		var charHurt = area.get_parent()
 		
 		if (charHurt.health > 0):
-			charHurt.stunHit(50.0, 1.25)
+			charHurt.stunHit(10.0, 1.25)
 		
-		print(area.get_parent().name)
 
 
 func _on_Area2D_area_entered(area):
 	pass # Replace with function body.
+
+
+func _on_AnimationPlayer_animation_started(anim_name):
+		if (anim_name == "Punch"):
+			isPunching = true

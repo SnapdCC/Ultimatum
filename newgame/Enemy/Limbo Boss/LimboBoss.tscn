@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Enemy/Limbo Boss/hurtLimboSpriteSheet.png" type="Texture" id=1]
 [ext_resource path="res://Enemy/Limbo Boss/IdleLimbo.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Enemy/Limbo Boss/LimboBossDyingSprite.png" type="Texture" id=6]
 [ext_resource path="res://Enemy/Limbo Boss/LimboBoss.gd" type="Script" id=7]
 [ext_resource path="res://Enemy/Limbo Boss/ChargeLimbo.png" type="Texture" id=8]
+[ext_resource path="res://Sounds/Punch 2 (flesh).ogg" type="AudioStream" id=9]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 25.8185
@@ -225,6 +226,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [ true, false, true ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("SoundEffectStream:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "Taunt"
@@ -335,9 +348,9 @@ anims/Walk = SubResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -78 )
-texture = ExtResource( 8 )
+texture = ExtResource( 4 )
 region_enabled = true
-region_rect = Rect2( 37, 53, 79, 156 )
+region_rect = Rect2( 424, 45, 76, 153 )
 
 [node name="HurtAreaLimboPunch" type="Area2D" parent="Sprite"]
 
@@ -349,8 +362,12 @@ disabled = true
 [node name="attackCooldown" type="Timer" parent="."]
 wait_time = 3.0
 
+[node name="SoundEffectStream" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+
 [node name="enemy" type="Node" parent="."]
 [connection signal="area_entered" from="LimboHitbox" to="." method="_on_LimboHitbox_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
 [connection signal="area_entered" from="Sprite/HurtAreaLimboPunch" to="." method="_on_HurtAreaLimboPunch_area_entered"]
 [connection signal="timeout" from="attackCooldown" to="." method="_on_attackCooldown_timeout"]
