@@ -35,6 +35,7 @@ limit_smoothed = true
 smoothing_enabled = true
 
 [node name="BackgroundColliders" type="StaticBody2D" parent="."]
+collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BackgroundColliders"]
 position = Vector2( 6.40435, 164.934 )

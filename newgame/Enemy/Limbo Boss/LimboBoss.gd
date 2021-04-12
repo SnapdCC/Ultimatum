@@ -5,6 +5,12 @@ onready var bossHealth = get_node("../CanvasLayer/BossUI/BossFrame/HealthBar")
 var maxHealth = 200.0
 var health = 200.0
 
+export(NodePath) var Arrow_Path
+var Arrow:Sprite
+export(NodePath) var Right_Wall_Path
+var Right_Wall:CollisionShape2D
+
+
 var tempAnim
 var anim_new
 var isWalking = false
@@ -25,6 +31,8 @@ onready var bossPosition = get_parent().get_node("LimboBoss")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Arrow = get_node_or_null(Arrow_Path)
+	Right_Wall = get_node_or_null(Right_Wall_Path)
 	bossHealth.value = (health / maxHealth) * 100.0
 	if (!isWalking and alive):
 		tempAnim = "Idle"
@@ -77,6 +85,10 @@ func _on_LimboHitbox_area_entered(area):
 	pass # Replace with function body.
 	
 func bossDie():
+	if Arrow != null:
+		Arrow.set_visible(true)
+	if Right_Wall != null:
+		Right_Wall.set_disabled(true)
 	animationPlayer.stop()
 	tempAnim = "Death"
 

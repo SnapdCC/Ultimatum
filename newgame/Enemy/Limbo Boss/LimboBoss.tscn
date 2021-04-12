@@ -14,7 +14,7 @@
 radius = 25.8185
 height = 87.5644
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=2]
 resource_name = "Charge"
 length = 1.6
 tracks/0/type = "value"
@@ -54,8 +54,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -78 ), Vector2( 0, -82 ), Vector2( 0, -86 ), Vector2( 0, -82 ), Vector2( 0, -86 ), Vector2( 0, -77.9819 ), Vector2( 0, -75 ), Vector2( 0, -79 ), Vector2( 0, -75 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Death"
+[sub_resource type="Animation" id=3]
 length = 1.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -94,8 +93,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -80 ), Vector2( 0, -76 ), Vector2( 0, -70 ), Vector2( 0, -54 ), Vector2( 0, -32 ), Vector2( 0, -25 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Hurt"
+[sub_resource type="Animation" id=4]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -134,8 +132,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -78 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "Idle"
+[sub_resource type="Animation" id=5]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -175,8 +172,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -78 ) ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Punch"
+[sub_resource type="Animation" id=6]
 length = 0.7
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -239,8 +235,7 @@ tracks/4/keys = {
 "values": [ false, true, false ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "Taunt"
+[sub_resource type="Animation" id=7]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -279,8 +274,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -79 ), Vector2( 0, -79 ), Vector2( 0, -79 ), Vector2( 0, -79 ), Vector2( 0, -79 ), Vector2( 0, -85 ), Vector2( 0, -97 ), Vector2( 0, -85 ), Vector2( 0, -97 ), Vector2( 0, -85 ), Vector2( 0, -85 ), Vector2( 0, -97 ), Vector2( 0, -105 ), Vector2( 0, -103 ) ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "Walk"
+[sub_resource type="Animation" id=8]
 length = 1.4
 loop = true
 tracks/0/type = "value"
@@ -320,7 +314,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -78 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 22.333, 10 )
 
 [node name="LimboBoss" type="KinematicBody2D"]
@@ -338,13 +332,13 @@ shape = SubResource( 1 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Charge = SubResource( 9 )
-anims/Death = SubResource( 2 )
-anims/Hurt = SubResource( 3 )
-anims/Idle = SubResource( 4 )
-anims/Punch = SubResource( 5 )
-anims/Taunt = SubResource( 6 )
-anims/Walk = SubResource( 7 )
+anims/Charge = SubResource( 2 )
+anims/Death = SubResource( 3 )
+anims/Hurt = SubResource( 4 )
+anims/Idle = SubResource( 5 )
+anims/Punch = SubResource( 6 )
+anims/Taunt = SubResource( 7 )
+anims/Walk = SubResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -78 )
@@ -356,7 +350,7 @@ region_rect = Rect2( 424, 45, 76, 153 )
 
 [node name="PunchShape" type="CollisionShape2D" parent="Sprite/HurtAreaLimboPunch"]
 position = Vector2( 19.5998, -17.3725 )
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 disabled = true
 
 [node name="attackCooldown" type="Timer" parent="."]
