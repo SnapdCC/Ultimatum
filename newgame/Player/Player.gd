@@ -4,8 +4,8 @@ signal walls
 export var speed = 220
 var screen_size
 
-var health = 100.0
-var maxHealth = 100.0
+var health = 100
+var maxHealth = 100
 onready var zeraHealth = get_node("../CanvasLayer/ZeraUI/Frame/HealthBar")
 
 var isPunching = false

@@ -334,10 +334,10 @@ anims/Taunt = SubResource( 6 )
 anims/Walk = SubResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -75 )
+position = Vector2( 0, -78 )
 texture = ExtResource( 8 )
 region_enabled = true
-region_rect = Rect2( 797, 59, 79, 150 )
+region_rect = Rect2( 37, 53, 79, 156 )
 
 [node name="HurtAreaLimboPunch" type="Area2D" parent="Sprite"]
 
