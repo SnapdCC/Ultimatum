@@ -255,7 +255,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=22]
-length = 0.6
+length = 1.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -275,7 +275,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.4, 0.6 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.7, 1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ Rect2( 29, 26, 54, 99 ), Rect2( 250, 28, 57, 97 ), Rect2( 379, 27, 85, 98 ), Rect2( 520, 22, 64, 103 ), Rect2( 250, 28, 57, 97 ) ]
@@ -304,7 +304,7 @@ tracks/3/keys = {
 "start_offset": 0.0,
 "stream": ExtResource( 4 )
 } ],
-"times": PoolRealArray( 0.2 )
+"times": PoolRealArray( 0.4 )
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("SoundEffectStream:playing")
@@ -313,7 +313,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3 ),
+"times": PoolRealArray( 0, 0.4, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ false, true, false ]
@@ -325,7 +325,7 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
+"times": PoolRealArray( 0, 0.4, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
@@ -574,9 +574,9 @@ anims/Walk = SubResource( 25 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -1, -31 )
-texture = ExtResource( 7 )
+texture = ExtResource( 9 )
 region_enabled = true
-region_rect = Rect2( 787, 3, 63, 97 )
+region_rect = Rect2( 250, 28, 57, 97 )
 
 [node name="HurtArea" type="Area2D" parent="Sprite"]
 position = Vector2( 1, 31 )

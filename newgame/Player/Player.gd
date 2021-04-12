@@ -154,6 +154,9 @@ func stunHit(damageTake, stunFrame):
 			if (isPunching):
 				isPunching = false
 				tempAnim = "Hurt"
+			elif (isKicking):
+				isKicking = false
+				tempAnim = "Hurt"
 		
 			tempAnim = "Hurt"
 
@@ -162,8 +165,10 @@ func _on_HurtArea_area_entered(area):
 	if (area.get_parent().get_node_or_null("enemy") != null):
 		var charHurt = area.get_parent()
 		
-		if (charHurt.health > 0):
-			charHurt.stunHit(10.0, 1.25)
+		if (charHurt.health > 0 and isPunching):
+			charHurt.stunHit(10.0, .75)
+		elif (charHurt.health > 0 and isKicking):
+			charHurt.stunHit(20.0, 1.5)
 		
 
 
@@ -174,3 +179,5 @@ func _on_Area2D_area_entered(area):
 func _on_AnimationPlayer_animation_started(anim_name):
 		if (anim_name == "Punch"):
 			isPunching = true
+		if (anim_name == "Heavy Attack"):
+			isKicking = true
