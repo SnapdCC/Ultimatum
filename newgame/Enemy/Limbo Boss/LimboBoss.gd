@@ -14,6 +14,7 @@ var Right_Wall:CollisionShape2D
 var tempAnim
 var anim_new
 var isWalking = false
+var isCharging = false
 var alive = true
 var dontLoop = false
 var canHit = true
@@ -21,8 +22,8 @@ var isTaunting = false
 var isPunching = false
 var noWalk = false
 var inStun = false
-#var attackGenerator = RandomNumberGenerator.new()
-#var attackChoice = attackGenerator.ranf_range(1, 3)
+var attackGenerator = RandomNumberGenerator.new()
+var attackChoice = attackGenerator.randf_range(1, 3)
 
 onready var playerPosition = get_parent().get_node("Player")
 var bossSpeed = 25
@@ -48,14 +49,20 @@ func _physics_process(delta):
 		if ((bossPosition.position.x - playerPosition.position.x) <= 50 && (bossPosition.position.x - playerPosition.position.x) >= -50):
 			isWalking = false
 			if (canHit and !isTaunting):
-				isPunching = true
-				tempAnim = "Punch"
+				attackChoice = attackGenerator.randf_range(1, 10)
+				
+				if (attackChoice > 6):
+					isCharging = true
+					tempAnim = "Charge"
+				else:
+					isPunching = true
+					tempAnim = "Punch"
 			else:
 				if (tempAnim != "Taunt"):
 					tempAnim = "Idle"
 			
 		else:
-			if (isPunching or isTaunting):
+			if (isPunching or isTaunting or isCharging):
 				noWalk = true
 			if(!noWalk):
 				move_and_slide((playerPosition.position - (bossPosition.position - Vector2(0, 20))).normalized() * bossSpeed)
@@ -101,6 +108,7 @@ func stunHit(damageTake, stunFrame):
 	if (health <= 0):
 		animationPlayer.playback_speed = 1
 		isWalking = false
+		isCharging = false
 		inStun = false
 		alive  = false
 		dontLoop = true
@@ -109,8 +117,9 @@ func stunHit(damageTake, stunFrame):
 		inStun = true
 		animationPlayer.playback_speed = 1 / stunFrame
 		
-		if (isPunching):
+		if (isPunching or isCharging):
 			isPunching = false
+			isCharging = false
 			tempAnim = "Hurt"
 
 
@@ -119,6 +128,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		$attackCooldown.start()
 		canHit = false
 		isPunching = false
+		isCharging = false
 		noWalk = false
 	
 	if (anim_name == "Death"):
@@ -126,6 +136,13 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		
 	if (anim_name == "Taunt"):
 		tempAnim = "Idle"
+		
+	if (anim_name == "Charge"):
+		$attackCooldown.start()
+		canHit = false
+		isCharging = false
+		isPunching = false
+		noWalk = false
 		
 	if (anim_name == "Hurt"):
 		animationPlayer.playback_speed = 1
@@ -139,3 +156,5 @@ func _on_attackCooldown_timeout():
 func _on_AnimationPlayer_animation_started(anim_name):
 		if (anim_name == "Punch"):
 			isPunching = true
+		elif (anim_name == "Charge"):
+			isCharging = true
