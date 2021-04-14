@@ -49,8 +49,6 @@ func _physics_process(delta):
 		if ((bossPosition.position.x - playerPosition.position.x) <= 50 && (bossPosition.position.x - playerPosition.position.x) >= -50):
 			isWalking = false
 			if (canHit and !isTaunting):
-				attackChoice = attackGenerator.randf_range(1, 10)
-				
 				if (attackChoice > 6):
 					isCharging = true
 					tempAnim = "Charge"
@@ -130,6 +128,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		isPunching = false
 		isCharging = false
 		noWalk = false
+		attackChoice = attackGenerator.randf_range(1, 10)
 	
 	if (anim_name == "Death"):
 		queue_free()
@@ -143,6 +142,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		isCharging = false
 		isPunching = false
 		noWalk = false
+		attackChoice = attackGenerator.randf_range(1, 10)
+		
 		
 	if (anim_name == "Hurt"):
 		animationPlayer.playback_speed = 1

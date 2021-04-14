@@ -17,7 +17,7 @@ height = 37.1132
 radius = 19.8423
 height = 37.8624
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "Death"
 length = 0.3
 tracks/0/type = "value"
@@ -57,7 +57,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -36 ), Vector2( 0, -31 ), Vector2( 0, -19 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 resource_name = "Hurt"
 length = 0.2
 tracks/0/type = "value"
@@ -97,8 +97,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -38 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Idle"
+[sub_resource type="Animation" id=5]
 length = 0.5
 loop = true
 tracks/0/type = "value"
@@ -138,7 +137,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -37 ), Vector2( 0, -36 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 resource_name = "Punch"
 length = 0.5
 tracks/0/type = "value"
@@ -190,7 +189,7 @@ tracks/3/keys = {
 "values": [ true, false, true ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=7]
 resource_name = "Walk"
 length = 1.4
 loop = true
@@ -231,7 +230,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -38 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 10, 7.51579 )
 
 [node name="Skeleton" type="KinematicBody2D"]
@@ -248,23 +247,23 @@ position = Vector2( 0, -38.5814 )
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Death = SubResource( 5 )
-anims/Hurt = SubResource( 6 )
-anims/Idle = SubResource( 3 )
-anims/Punch = SubResource( 7 )
-anims/Walk = SubResource( 8 )
+anims/Death = SubResource( 3 )
+anims/Hurt = SubResource( 4 )
+anims/Idle = SubResource( 5 )
+anims/Punch = SubResource( 6 )
+anims/Walk = SubResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -37 )
-texture = ExtResource( 1 )
+position = Vector2( 0, -36 )
+texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 19, 13, 37, 74 )
+region_rect = Rect2( 16, 8, 38, 71 )
 
 [node name="Punchbox" type="Area2D" parent="Sprite"]
 
 [node name="PunchHitbox" type="CollisionShape2D" parent="Sprite/Punchbox"]
 position = Vector2( 14.9831, -1.12373 )
-shape = SubResource( 4 )
+shape = SubResource( 8 )
 disabled = true
 
 [node name="attackCooldown" type="Timer" parent="."]
