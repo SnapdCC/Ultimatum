@@ -6,9 +6,9 @@ var maxHealth = 200.0
 var health = 200.0
 
 export(NodePath) var Arrow_Path
-var Arrow:Sprite
+var Arrow:Node
 export(NodePath) var Right_Wall_Path
-var Right_Wall:CollisionShape2D
+var Right_Wall:Node
 
 
 var tempAnim
@@ -90,10 +90,17 @@ func _on_LimboHitbox_area_entered(area):
 	pass # Replace with function body.
 	
 func bossDie():
+	get_tree().change_scene("res://Screens/WinScreen.tscn")
 	if Arrow != null:
+		print("Arrow Found")
 		Arrow.set_visible(true)
+	else:
+		print("Arrow notFound")
 	if Right_Wall != null:
+		print("Wall Found")
 		Right_Wall.set_disabled(true)
+	else:
+		print("Wall not Found")
 	animationPlayer.stop()
 	tempAnim = "Death"
 

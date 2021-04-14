@@ -7,7 +7,6 @@
 extents = Vector2( 10, 147.506 )
 
 [node name="Arrow" type="Sprite"]
-position = Vector2( 784.889, 142.128 )
 z_index = -4095
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
@@ -18,4 +17,6 @@ gravity = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

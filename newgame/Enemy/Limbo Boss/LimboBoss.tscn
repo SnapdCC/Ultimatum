@@ -116,6 +116,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [ Vector2( 0, -80 ), Vector2( 0, -76 ), Vector2( 0, -70 ), Vector2( 0, -54 ), Vector2( 0, -32 ), Vector2( 0, -25 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Level_Transitioner:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../BackgroundColliders/CollisionShape2D2:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 1.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=4]
 length = 0.4
@@ -384,9 +408,9 @@ anims/Walk = SubResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -78 )
-texture = ExtResource( 2 )
+texture = ExtResource( 8 )
 region_enabled = true
-region_rect = Rect2( 42, 17, 72, 156 )
+region_rect = Rect2( 37, 53, 79, 156 )
 
 [node name="HurtAreaLimboPunch" type="Area2D" parent="Sprite"]
 

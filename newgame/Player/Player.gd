@@ -109,6 +109,7 @@ func playerDeath():
 	animationPlayer.stop()
 	animationPlayer.play("Death")
 	isDead = true
+	get_tree().change_scene("res://Screens/LoseScreen.tscn")
 	
 
 #double punch playing function

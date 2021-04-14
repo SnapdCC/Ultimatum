@@ -1,4 +1,4 @@
-extends Area2D
+extends Sprite
 
 export(String, FILE, "*.tscn,*.scn") var file_path setget set_file_path
 
