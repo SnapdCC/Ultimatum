@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Enemy/Skeleton/idleStanceSkeleton.png" type="Texture" id=1]
 [ext_resource path="res://Misc/healthBarProgress.png" type="Texture" id=2]
-[ext_resource path="res://Misc/healthBarUnder.png" type="Texture" id=3]
+[ext_resource path="res://User Interface/UI Elements/MinionHealthBar.png" type="Texture" id=3]
 [ext_resource path="res://Enemy/Skeleton/Skeleton.gd" type="Script" id=4]
 [ext_resource path="res://Enemy/Skeleton/SkeletonDeathSprite.png" type="Texture" id=5]
 [ext_resource path="res://Enemy/Skeleton/walkCycleSkeletonSprite.png" type="Texture" id=6]
@@ -237,6 +237,9 @@ extents = Vector2( 10, 7.51579 )
 script = ExtResource( 4 )
 
 [node name="SkeletonHitbox" type="Area2D" parent="."]
+gravity = 0.0
+collision_layer = 2147483652
+collision_mask = 2
 
 [node name="Hitbox" type="CollisionShape2D" parent="SkeletonHitbox"]
 position = Vector2( 0.374588, -38.5814 )
@@ -260,6 +263,8 @@ region_enabled = true
 region_rect = Rect2( 16, 8, 38, 71 )
 
 [node name="Punchbox" type="Area2D" parent="Sprite"]
+gravity = 0.0
+collision_layer = 2
 
 [node name="PunchHitbox" type="CollisionShape2D" parent="Sprite/Punchbox"]
 position = Vector2( 14.9831, -1.12373 )
@@ -267,27 +272,31 @@ shape = SubResource( 8 )
 disabled = true
 
 [node name="attackCooldown" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
 
-[node name="minorEnemy" type="Node" parent="."]
+[node name="enemy" type="Node" parent="."]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Health" type="TextureRect" parent="CanvasLayer"]
-margin_left = -23.9729
-margin_top = -89.5239
-margin_right = 16.0271
-margin_bottom = -49.5239
+[node name="Health" type="TextureRect" parent="."]
+margin_left = -46.2217
+margin_top = -88.3347
+margin_right = 47.7783
+margin_bottom = -48.3347
+texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HealthBar" type="TextureProgress" parent="CanvasLayer/Health"]
-margin_right = 600.0
-margin_bottom = 74.0
-rect_scale = Vector2( 0.08049, 0.0899736 )
-texture_under = ExtResource( 3 )
+[node name="HealthBar" type="TextureProgress" parent="Health"]
+margin_left = 2.89191
+margin_top = 1.68921
+margin_right = 602.892
+margin_bottom = 75.6892
+rect_scale = Vector2( 0.15, 0.075 )
+value = 50.0
 texture_progress = ExtResource( 2 )
-tint_progress = Color( 0.109804, 0.847059, 0.239216, 1 )
+fill_mode = 1
+tint_progress = Color( 0.635294, 0.486275, 0.0823529, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

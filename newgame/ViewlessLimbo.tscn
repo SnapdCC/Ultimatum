@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Stage_Background.png" type="Texture" id=1]
 [ext_resource path="res://User Interface/LimboBossUI.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://User Interface/ZeraUI.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Misc/SceneTransitioner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Enemy/Limbo Boss/LimboBossDyingSprite.png" type="Texture" id=10]
+[ext_resource path="res://Enemy/Skeleton/Skeleton.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6.46372, 152.839 )
@@ -86,7 +87,7 @@ z_index = 2
 texture = ExtResource( 6 )
 
 [node name="LimboBoss" parent="." instance=ExtResource( 3 )]
-position = Vector2( 557.337, 252.152 )
+position = Vector2( 847.387, 247.038 )
 rotation = 3.14159
 scale = Vector2( 0.879994, -0.832185 )
 Arrow_Path = NodePath("../Level_Transitioner")
@@ -118,5 +119,8 @@ margin_bottom = 6.10352e-05
 
 [node name="Dialogic" type="Node" parent="."]
 script = ExtResource( 7 )
+
+[node name="Skeleton" parent="." instance=ExtResource( 11 )]
+position = Vector2( 423.437, 247.038 )
 
 [editable path="LimboBoss"]

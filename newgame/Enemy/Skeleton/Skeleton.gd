@@ -3,7 +3,7 @@ extends KinematicBody2D
 onready var playerPosition = get_parent().get_node("Player")
 onready var enemyPosition = get_parent().get_node("Skeleton")
 onready var animationPlayer = $AnimationPlayer
-onready var enemyHealth = get_node("./CanvasLayer/Health/HealthBar")
+onready var enemyHealth = get_node("./Health/HealthBar")
 var maxHealth = int(100)
 var health = int(100)
 
@@ -26,12 +26,13 @@ func _ready():
 
 
 func _physics_process(delta):
+	self.z_index = self.position.y
 	if(alive and !inStun):
 		isWalking = true
 		if (playerPosition.position.x > position.x):
-			$Sprite.scale.x = -1
-		else:
 			$Sprite.scale.x = 1
+		else:
+			$Sprite.scale.x = -1
 			
 		if ((enemyPosition.position.x - playerPosition.position.x) <= 50 && (enemyPosition.position.x - playerPosition.position.x) >= -50):
 			isWalking = false
@@ -70,6 +71,7 @@ func enemyDie():
 	
 
 func stunHit(damageTake, stunFrame):
+	print("ouch")
 	health -= damageTake
 	print(health / maxHealth)
 	enemyHealth.value = (health / maxHealth) * 100.0

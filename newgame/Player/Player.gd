@@ -161,15 +161,16 @@ func stunHit(damageTake, stunFrame):
 		
 			tempAnim = "Hurt"
 
-# area for hits
+# if an attack lands
 func _on_HurtArea_area_entered(area):
 	if (area.get_parent().get_node_or_null("enemy") != null):
+		print("powpow")
 		var charHurt = area.get_parent()
 		
 		if (charHurt.health > 0 and isPunching):
 			charHurt.stunHit(10.0, .75)
 		elif (charHurt.health > 0 and isKicking):
-			charHurt.stunHit(20.0, 1.5)
+			charHurt.stunHit(20.0, 2)
 		
 
 
