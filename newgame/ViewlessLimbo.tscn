@@ -8,7 +8,7 @@
 [ext_resource path="res://Stage_Trees.png" type="Texture" id=6]
 [ext_resource path="res://addons/dialogic/Other/DialogicClass.gd" type="Script" id=7]
 [ext_resource path="res://User Interface/ZeraUI.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Misc/End_Of_Level_Handler.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Misc/SceneTransitioner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Enemy/Limbo Boss/LimboBossDyingSprite.png" type="Texture" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -24,12 +24,10 @@ z_index = -4096
 texture = ExtResource( 1 )
 
 [node name="Level_Transitioner" parent="." instance=ExtResource( 9 )]
-position = Vector2( 408.518, 150.606 )
+visible = false
+position = Vector2( 808.386, 150.606 )
 z_index = 4000
 file_path = "res://Screens/WinScreen.tscn"
-
-[node name="Area2D" parent="Level_Transitioner" index="0"]
-position = Vector2( 525.731, 4.76837e-06 )
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 159.539, 238.769 )
@@ -54,7 +52,6 @@ shape = SubResource( 1 )
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="BackgroundColliders"]
 position = Vector2( 893.68, 150.606 )
 shape = SubResource( 1 )
-disabled = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BackgroundColliders"]
 position = Vector2( 0.561234, 0 )
@@ -121,7 +118,5 @@ margin_bottom = 6.10352e-05
 
 [node name="Dialogic" type="Node" parent="."]
 script = ExtResource( 7 )
-
-[editable path="Level_Transitioner"]
 
 [editable path="LimboBoss"]

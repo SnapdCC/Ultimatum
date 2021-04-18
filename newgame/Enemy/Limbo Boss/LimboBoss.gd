@@ -90,7 +90,7 @@ func _on_LimboHitbox_area_entered(area):
 	pass # Replace with function body.
 	
 func bossDie():
-	get_tree().change_scene("res://Screens/WinScreen.tscn")
+	#get_tree().change_scene("res://Screens/WinScreen.tscn")
 	if Arrow != null:
 		print("Arrow Found")
 		Arrow.set_visible(true)

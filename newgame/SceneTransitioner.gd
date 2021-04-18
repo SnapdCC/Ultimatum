@@ -9,6 +9,7 @@ func set_file_path(p_value):
 			return
 		file_path = p_value
 
-func _on_body_entered(body):
-	if body.name == "Player":
-		get_tree().change_scene(file_path)
+
+func _on_SceneTransition_area_entered(area):
+	pass # Replace with function body.
+	get_tree().change_scene(file_path)
