@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Stage_Background.png" type="Texture" id=1]
 [ext_resource path="res://User Interface/LimboBossUI.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Misc/SceneTransitioner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Enemy/Limbo Boss/LimboBossDyingSprite.png" type="Texture" id=10]
 [ext_resource path="res://Enemy/Skeleton/Skeleton.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Enemy/Devil/Demon.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6.46372, 152.839 )
@@ -122,5 +123,8 @@ script = ExtResource( 7 )
 
 [node name="Skeleton" parent="." instance=ExtResource( 11 )]
 position = Vector2( 423.437, 247.038 )
+
+[node name="Demon" parent="." instance=ExtResource( 12 )]
+position = Vector2( 341.228, 221.186 )
 
 [editable path="LimboBoss"]

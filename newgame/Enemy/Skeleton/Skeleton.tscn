@@ -278,10 +278,11 @@ autostart = true
 [node name="enemy" type="Node" parent="."]
 
 [node name="Health" type="TextureRect" parent="."]
-margin_left = -46.2217
-margin_top = -88.3347
-margin_right = 47.7783
-margin_bottom = -48.3347
+margin_left = -31.2386
+margin_top = -89.4584
+margin_right = 62.7614
+margin_bottom = -49.4584
+rect_scale = Vector2( 0.644555, 1 )
 texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -301,5 +302,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
 [connection signal="area_entered" from="Sprite/Punchbox" to="." method="_on_Punchbox_area_entered"]
 [connection signal="timeout" from="attackCooldown" to="." method="_on_attackCooldown_timeout"]

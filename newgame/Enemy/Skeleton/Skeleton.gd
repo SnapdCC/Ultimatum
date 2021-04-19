@@ -59,9 +59,8 @@ func animationSwapper(anim):
 	
 
 func _on_Punchbox_area_entered(area):
-	if ((area.get_parent().get_node_or_null("player") != null) and (playerPosition.health > 0)):
+	if ((area.get_parent().get_node_or_null("player") != null) and (playerPosition.health > 0) and (playerPosition.get_node().position.z )):
 		var charHurt = area.get_parent()
-			
 			
 		charHurt.stunHit(25.0, 0.5)
 		
@@ -110,3 +109,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 func _on_attackCooldown_timeout():
 	canHit = true
+
+
+func _on_AnimationPlayer_animation_started(anim_name):
+	if (anim_name == "Punch"):
+		isPunching = true

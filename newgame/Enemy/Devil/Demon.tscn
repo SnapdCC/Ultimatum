@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Enemy/Devil/idleDemonSprite.png" type="Texture" id=1]
 [ext_resource path="res://Enemy/Devil/walkCycleDemonSprite.png" type="Texture" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Enemy/Devil/DemonPunchSprite.png" type="Texture" id=5]
 [ext_resource path="res://Enemy/Devil/HitstunDemon.png" type="Texture" id=6]
 [ext_resource path="res://Enemy/Devil/Demon.gd" type="Script" id=7]
+[ext_resource path="res://User Interface/UI Elements/MinionHealthBar.png" type="Texture" id=8]
+[ext_resource path="res://Misc/healthBarProgress.png" type="Texture" id=9]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 20.4207
@@ -53,7 +55,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.2, 0.3, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Vector2( 0, -2 ), Vector2( 0, 3 ), Vector2( 0, 12 ), Vector2( 0, 18 ) ]
+"values": [ Vector2( 0, -37 ), Vector2( 0, -33 ), Vector2( 0, -24 ), Vector2( 0, -18 ) ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -92,7 +94,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.4, 0.5, 0.6, 0.7, 0.9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Vector2( 0, -2 ), Vector2( 10, -2 ), Vector2( 15, -2 ), Vector2( 10, -2 ), Vector2( 15, -2 ), Vector2( 0, -2 ) ]
+"values": [ Vector2( 0, -37 ), Vector2( 10, -37 ), Vector2( 15, -37 ), Vector2( 10, -37 ), Vector2( 15, -37 ), Vector2( 0, -37 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Sprite/AttackArea/Fire:disabled")
@@ -145,7 +147,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ Vector2( 0, -2 ) ]
+"values": [ Vector2( 0, -37 ) ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -185,7 +187,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ Vector2( 0, -4 ), Vector2( 0, -2 ) ]
+"values": [ Vector2( 0, -40 ), Vector2( 0, -37 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Sprite/AttackArea/Punch:disabled")
@@ -224,7 +226,7 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
+"update": 1,
 "values": [ Rect2( 27, 8, 43, 80 ) ]
 }
 tracks/2/type = "value"
@@ -236,8 +238,8 @@ tracks/2/enabled = true
 tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, -2 ) ]
+"update": 1,
+"values": [ Vector2( 0, -39 ) ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -278,7 +280,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ Vector2( 0, -2 ) ]
+"values": [ Vector2( 0, -37 ) ]
 }
 
 [sub_resource type="RectangleShape2D" id=4]
@@ -288,15 +290,19 @@ extents = Vector2( 8.13641, 6.51526 )
 extents = Vector2( 20.5397, 6.20028 )
 
 [node name="Demon" type="KinematicBody2D"]
-position = Vector2( 0, -36 )
+position = Vector2( 0, -0.5 )
 script = ExtResource( 7 )
 
 [node name="DemonHitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2147483650
 
 [node name="Hitbox" type="CollisionShape2D" parent="DemonHitbox"]
+position = Vector2( -1.25992, -34.9628 )
 shape = SubResource( 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="DemonHitbox"]
+position = Vector2( -1.25992, -34.9628 )
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -308,12 +314,13 @@ anims/Stun = SubResource( 10 )
 anims/Walk = SubResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -2 )
+position = Vector2( 0, -39 )
 texture = ExtResource( 6 )
 region_enabled = true
 region_rect = Rect2( 27, 8, 43, 80 )
 
 [node name="AttackArea" type="Area2D" parent="Sprite"]
+collision_layer = 2
 
 [node name="Punch" type="CollisionShape2D" parent="Sprite/AttackArea"]
 position = Vector2( 16.694, 0 )
@@ -328,3 +335,31 @@ disabled = true
 [node name="attackCooldown" type="Timer" parent="."]
 
 [node name="enemy" type="Node" parent="."]
+
+[node name="Health" type="TextureRect" parent="."]
+margin_left = -28.6607
+margin_top = -82.95
+margin_right = 65.3393
+margin_bottom = -52.95
+rect_scale = Vector2( 0.655511, 0.843626 )
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="TextureProgress" parent="Health"]
+margin_left = 3.0
+margin_top = 2.0
+margin_right = 603.0
+margin_bottom = 76.0
+rect_scale = Vector2( 0.146269, 0.0782239 )
+value = 100.0
+texture_progress = ExtResource( 9 )
+fill_mode = 1
+tint_progress = Color( 0.501961, 0.0705882, 0.0705882, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
+[connection signal="area_entered" from="Sprite/AttackArea" to="." method="_on_AttackArea_area_entered"]
