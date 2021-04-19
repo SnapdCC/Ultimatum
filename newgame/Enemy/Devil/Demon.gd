@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 onready var playerPosition = get_parent().get_node("Player")
-onready var enemyPosition = get_parent().get_node("Skeleton")
+onready var enemyPosition = get_parent().get_node("Demon")
 onready var animationPlayer = $AnimationPlayer
 onready var enemyHealth = get_node("./Health/HealthBar")
 var maxHealth = int(100)
@@ -71,7 +71,7 @@ func enemyDie():
 	
 
 func stunHit(damageTake, stunFrame):
-	
+	print("ouch")
 	health -= damageTake
 	print(health / maxHealth)
 	enemyHealth.value = (health / maxHealth) * 100.0

@@ -605,7 +605,11 @@ disabled = true
 [node name="SoundEffectStream" parent="." instance=ExtResource( 2 )]
 
 [node name="player" type="Node" parent="."]
+
+[node name="transition" type="Timer" parent="."]
+wait_time = 3.0
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
 [connection signal="area_entered" from="Sprite/HurtArea" to="." method="_on_HurtArea_area_entered"]
+[connection signal="timeout" from="transition" to="." method="_on_transition_timeout"]

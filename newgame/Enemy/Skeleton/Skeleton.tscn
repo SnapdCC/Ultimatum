@@ -257,10 +257,10 @@ anims/Punch = SubResource( 6 )
 anims/Walk = SubResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -36 )
-texture = ExtResource( 5 )
+position = Vector2( 0, -38 )
+texture = ExtResource( 6 )
 region_enabled = true
-region_rect = Rect2( 16, 8, 38, 71 )
+region_rect = Rect2( 46, 14, 35, 75 )
 
 [node name="Punchbox" type="Area2D" parent="Sprite"]
 gravity = 0.0

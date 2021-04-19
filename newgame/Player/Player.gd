@@ -15,6 +15,7 @@ var isKicking = false
 var isGuarding = false
 var inStun = false
 var isDead = false
+var lose = false
 
 var beginning = Dialogic.start('beginning')
 
@@ -108,7 +109,10 @@ func animationSwapper(anim):
 func playerDeath():
 	animationPlayer.stop()
 	animationPlayer.play("Death")
-	isDead = true
+	$transition.start()
+
+
+func loseTransition():
 	get_tree().change_scene("res://Screens/LoseScreen.tscn")
 	
 
@@ -164,7 +168,7 @@ func stunHit(damageTake, stunFrame):
 # if an attack lands
 func _on_HurtArea_area_entered(area):
 	if (area.get_parent().get_node_or_null("enemy") != null):
-		print("powpow")
+		
 		var charHurt = area.get_parent()
 		
 		if (charHurt.health > 0 and isPunching):
@@ -183,3 +187,7 @@ func _on_AnimationPlayer_animation_started(anim_name):
 			isPunching = true
 		if (anim_name == "Heavy Attack"):
 			isKicking = true
+
+
+func _on_transition_timeout():
+	loseTransition()
