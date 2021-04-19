@@ -170,7 +170,7 @@ func _on_HurtArea_area_entered(area):
 		if (charHurt.health > 0 and isPunching):
 			charHurt.stunHit(10.0, .75)
 		elif (charHurt.health > 0 and isKicking):
-			charHurt.stunHit(20.0, 2)
+			charHurt.stunHit(20.0, 1.75)
 		
 
 

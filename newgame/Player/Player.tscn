@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sounds/SoundEffectStream.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Player/Sprites/MaincharacterConcept.png" type="Texture" id=10]
 [ext_resource path="res://Player/Sprites/blockingSpriteSheet.png" type="Texture" id=11]
 [ext_resource path="res://Player/Sprites/idlestancePlayerCharacter.png" type="Texture" id=12]
+[ext_resource path="res://Player/Sprites/walkCycleMaincharacerFixed.png" type="Texture" id=13]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 26.6944
@@ -25,71 +26,71 @@ height = 32.6127
 extents = Vector2( 33.9537, 3 )
 
 [sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 150, 100 )
-
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 7 )
-region = Rect2( 150, 0, 150, 100 )
-
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 7 )
-region = Rect2( 300, 0, 150, 100 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 7 )
-region = Rect2( 450, 0, 150, 100 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 7 )
-region = Rect2( 600, 0, 150, 100 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 7 )
-region = Rect2( 750, 0, 150, 100 )
-
-[sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 8 )
 region = Rect2( 0, 0, 102, 100 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 8 )
 region = Rect2( 102, 0, 102, 100 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 8 )
 region = Rect2( 204, 0, 102, 100 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 8 )
 region = Rect2( 306, 0, 102, 100 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 8 )
 region = Rect2( 408, 0, 102, 100 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 8 )
 region = Rect2( 510, 0, 102, 100 )
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 8 )
 region = Rect2( 612, 0, 102, 100 )
 
-[sub_resource type="AtlasTexture" id=17]
+[sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 8 )
 region = Rect2( 714, 0, 102, 100 )
 
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 150, 100 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 7 )
+region = Rect2( 150, 0, 150, 100 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 7 )
+region = Rect2( 300, 0, 150, 100 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 7 )
+region = Rect2( 450, 0, 150, 100 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 7 )
+region = Rect2( 600, 0, 150, 100 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 7 )
+region = Rect2( 750, 0, 150, 100 )
+
 [sub_resource type="SpriteFrames" id=18]
 animations = [ {
-"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
-"loop": false,
-"name": "Punch",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
 "loop": true,
 "name": "Walk",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"loop": false,
+"name": "Punch",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 10 ) ],
@@ -500,7 +501,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 8 ) ]
+"values": [ ExtResource( 13 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:region_rect")
@@ -512,7 +513,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Rect2( 27, 0, 56, 100 ), Rect2( 130, 0, 43, 100 ), Rect2( 229, 2, 43, 98 ), Rect2( 324, 2, 48, 98 ), Rect2( 424, 0, 52, 100 ), Rect2( 532, 0, 52, 100 ), Rect2( 639, 0, 47, 100 ), Rect2( 751, 0, 41, 100 ) ]
+"values": [ Rect2( 27, 0, 56, 100 ), Rect2( 130, 0, 43, 100 ), Rect2( 215, 2, 43, 98 ), Rect2( 310, 2, 48, 98 ), Rect2( 424, 0, 52, 100 ), Rect2( 545, 0, 52, 100 ), Rect2( 666, 0, 47, 100 ), Rect2( 799, 0, 41, 100 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Sprite:position")
@@ -576,9 +577,9 @@ anims/Walk = SubResource( 26 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -1, -31 )
-texture = ExtResource( 5 )
+texture = ExtResource( 13 )
 region_enabled = true
-region_rect = Rect2( 482, 37, 63, 97 )
+region_rect = Rect2( 27, 0, 56, 100 )
 
 [node name="HurtArea" type="Area2D" parent="Sprite"]
 position = Vector2( 1, 31 )
