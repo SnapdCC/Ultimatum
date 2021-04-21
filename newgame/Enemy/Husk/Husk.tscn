@@ -1,0 +1,365 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Enemy/Husk/WalkSAB_Sprite.png" type="Texture" id=1]
+[ext_resource path="res://Enemy/Husk/DyingSABSprite.png" type="Texture" id=2]
+[ext_resource path="res://Enemy/Husk/HuskPunchSprite.png" type="Texture" id=3]
+[ext_resource path="res://Enemy/Husk/PocketSandSpriteSAB.png" type="Texture" id=4]
+[ext_resource path="res://Enemy/Husk/Husk.gd" type="Script" id=5]
+[ext_resource path="res://Misc/healthBarProgress.png" type="Texture" id=6]
+[ext_resource path="res://User Interface/UI Elements/MinionHealthBar.png" type="Texture" id=7]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 16.4613
+height = 39.0342
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 15.7542
+height = 41.1556
+
+[sub_resource type="Animation" id=3]
+resource_name = "Death"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 66, 13, 36, 75 ), Rect2( 191, 13, 45, 70 ), Rect2( 325, 16, 60, 65 ), Rect2( 512, 17, 77, 58 ), Rect2( 699, 32, 91, 37 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, -38 ), Vector2( 0, -36 ), Vector2( 0, -33 ), Vector2( 0, -30 ), Vector2( 0, -19 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Hurt"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Rect2( 191, 13, 45, 70 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 0, -36 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 66, 13, 36, 75 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -38 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Punch"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 28, 16, 33, 72 ), Rect2( 90, 16, 42, 72 ), Rect2( 157, 11, 38, 76 ), Rect2( 90, 16, 42, 72 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 0, -37 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/Punchbox/Attack:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "SandAttack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 16, 17, 31, 74 ), Rect2( 75, 15, 55, 74 ), Rect2( 150, 15, 66, 74 ), Rect2( 226, 15, 70, 74 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, -37 ), Vector2( 10, -37 ), Vector2( 15, -37 ), Vector2( 18, -37 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/Punchbox/Sand:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Walk"
+length = 1.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 21, 1, 35, 74 ), Rect2( 93, 1, 35, 74 ), Rect2( 166, 1, 38, 74 ), Rect2( 239, 1, 42, 74 ), Rect2( 319, 0, 51, 75 ), Rect2( 407, 0, 44, 75 ), Rect2( 508, 0, 33, 75 ), Rect2( 590, 0, 35, 75 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 0, -37 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 10.4509, 6.04946 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 12.957, 10 )
+
+[node name="Husk" type="KinematicBody2D"]
+script = ExtResource( 5 )
+
+[node name="HuskHitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="Hitbox" type="CollisionShape2D" parent="HuskHitbox"]
+position = Vector2( 2.47485, -37.4767 )
+shape = SubResource( 1 )
+
+[node name="Collision" type="CollisionShape2D" parent="HuskHitbox"]
+position = Vector2( 2.12132, -37.8302 )
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Death = SubResource( 3 )
+anims/Hurt = SubResource( 4 )
+anims/Idle = SubResource( 10 )
+anims/Punch = SubResource( 5 )
+anims/SandAttack = SubResource( 6 )
+anims/Walk = SubResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -38 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 66, 13, 36, 75 )
+
+[node name="Punchbox" type="Area2D" parent="Sprite"]
+collision_layer = 2
+
+[node name="Attack" type="CollisionShape2D" parent="Sprite/Punchbox"]
+position = Vector2( 15.5564, -1.06065 )
+shape = SubResource( 8 )
+disabled = true
+
+[node name="Sand" type="CollisionShape2D" parent="Sprite/Punchbox"]
+position = Vector2( 22.6275, -11.6673 )
+shape = SubResource( 9 )
+disabled = true
+
+[node name="attackCooldown" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="enemy" type="Node" parent="."]
+
+[node name="Health" type="TextureRect" parent="."]
+margin_left = -21.5667
+margin_top = -83.7921
+margin_right = 72.4333
+margin_bottom = -43.7921
+rect_scale = Vector2( 0.556802, 0.729901 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="TextureProgress" parent="Health"]
+margin_left = -0.336365
+margin_top = 1.79614
+margin_right = 599.664
+margin_bottom = 75.7961
+rect_scale = Vector2( 0.152591, 0.0672945 )
+value = 80.0
+texture_progress = ExtResource( 6 )
+fill_mode = 1
+tint_progress = Color( 0.584314, 0.419608, 0.352941, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
+[connection signal="area_entered" from="Sprite/Punchbox" to="." method="_on_Punchbox_area_entered"]
+[connection signal="timeout" from="attackCooldown" to="." method="_on_attackCooldown_timeout"]
+[connection signal="timeout" from="attackCooldown" to="." method="_on_Timer_timeout"]
