@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sounds/SoundEffectStream.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Player/Sprites/blockingSpriteSheet.png" type="Texture" id=11]
 [ext_resource path="res://Player/Sprites/idlestancePlayerCharacter.png" type="Texture" id=12]
 [ext_resource path="res://Player/Sprites/walkCycleMaincharacerFixed.png" type="Texture" id=13]
+[ext_resource path="res://Player/Sprites/SpecialAttackSprite.png" type="Texture" id=14]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 26.6944
@@ -83,6 +84,11 @@ region = Rect2( 750, 0, 150, 100 )
 
 [sub_resource type="SpriteFrames" id=18]
 animations = [ {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 2.5
+}, {
 "frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
 "loop": true,
 "name": "Walk",
@@ -92,11 +98,6 @@ animations = [ {
 "loop": false,
 "name": "Punch",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 2.5
 } ]
 
 [sub_resource type="Animation" id=19]
@@ -489,6 +490,46 @@ tracks/5/keys = {
 }
 
 [sub_resource type="Animation" id=26]
+resource_name = "Special"
+length = 3.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 14 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 64, 50, 46, 107 ), Rect2( 185, 49, 48, 107 ), Rect2( 301, 50, 39, 103 ), Rect2( 394, 50, 65, 103 ), Rect2( 506, 48, 149, 103 ), Rect2( 678, 49, 149, 103 ), Rect2( 864, 49, 149, 103 ), Rect2( 1045, 48, 149, 103 ), Rect2( 506, 48, 149, 103 ), Rect2( 678, 49, 149, 103 ), Rect2( 864, 49, 149, 103 ), Rect2( 1045, 48, 149, 103 ), Rect2( 506, 48, 149, 103 ), Rect2( 678, 49, 149, 103 ), Rect2( 864, 49, 149, 103 ), Rect2( 506, 48, 149, 103 ), Rect2( 678, 49, 149, 103 ), Rect2( 864, 49, 149, 103 ), Rect2( 1045, 48, 149, 103 ), Rect2( 506, 48, 149, 103 ), Rect2( 678, 49, 149, 103 ), Rect2( 864, 49, 149, 103 ), Rect2( 1045, 48, 149, 103 ), Rect2( 506, 48, 149, 103 ), Rect2( 678, 49, 149, 103 ), Rect2( 864, 49, 149, 103 ), Rect2( 1045, 48, 149, 103 ), Rect2( 506, 48, 149, 103 ), Rect2( 678, 49, 149, 103 ), Rect2( 864, 49, 149, 103 ), Rect2( 1045, 48, 149, 103 ), Rect2( 394, 50, 65, 103 ), Rect2( 301, 50, 39, 103 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4, 3.1, 3.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( -1, -35 ), Vector2( -1, -35 ), Vector2( 14, -35 ), Vector2( 56, -35 ), Vector2( 15, -35 ), Vector2( -1, -35 ) ]
+}
+
+[sub_resource type="Animation" id=27]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -528,13 +569,13 @@ tracks/2/keys = {
 "values": [ Vector2( -1, -31 ), Vector2( -1, -31 ), Vector2( -1, -31 ), Vector2( -1, -31 ), Vector2( -1, -31 ), Vector2( -1, -31 ), Vector2( -1, -31 ), Vector2( -1, -31 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=27]
+[sub_resource type="RectangleShape2D" id=28]
 extents = Vector2( 20, 7 )
 
-[sub_resource type="RectangleShape2D" id=28]
+[sub_resource type="RectangleShape2D" id=29]
 extents = Vector2( 17.0951, 7.22027 )
 
-[sub_resource type="RectangleShape2D" id=29]
+[sub_resource type="RectangleShape2D" id=30]
 extents = Vector2( 19.4753, 10 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -573,13 +614,14 @@ anims/Guard = SubResource( 21 )
 anims/Hurt = SubResource( 23 )
 anims/Idle = SubResource( 24 )
 anims/Punch = SubResource( 25 )
-anims/Walk = SubResource( 26 )
+anims/Special = SubResource( 26 )
+anims/Walk = SubResource( 27 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -1, -31 )
-texture = ExtResource( 7 )
+position = Vector2( -1, -35 )
+texture = ExtResource( 14 )
 region_enabled = true
-region_rect = Rect2( 39, 0, 65, 100 )
+region_rect = Rect2( 301, 50, 39, 103 )
 
 [node name="HurtArea" type="Area2D" parent="Sprite"]
 position = Vector2( 1, 31 )
@@ -589,17 +631,17 @@ collision_mask = 4
 
 [node name="CollisionPunch" type="CollisionShape2D" parent="Sprite/HurtArea"]
 position = Vector2( 29.3462, -57.3518 )
-shape = SubResource( 27 )
+shape = SubResource( 28 )
 disabled = true
 
 [node name="Collision2ndPunch" type="CollisionShape2D" parent="Sprite/HurtArea"]
 position = Vector2( 21.6912, -57.7319 )
-shape = SubResource( 28 )
+shape = SubResource( 29 )
 disabled = true
 
 [node name="CollisionKickShape" type="CollisionShape2D" parent="Sprite/HurtArea"]
 position = Vector2( 22.0486, -20.4737 )
-shape = SubResource( 29 )
+shape = SubResource( 30 )
 disabled = true
 
 [node name="SoundEffectStream" parent="." instance=ExtResource( 2 )]

@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 onready var playerPosition = get_parent().get_node("Player")
-onready var enemyPosition = get_parent().get_node("Skeleton")
+onready var enemyPosition = get_parent().get_node("Wraith")
 onready var animationPlayer = $AnimationPlayer
 onready var enemyHealth = get_node("./Health/HealthBar")
 var maxHealth = int(100)
