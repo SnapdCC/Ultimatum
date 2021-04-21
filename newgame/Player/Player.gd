@@ -6,7 +6,11 @@ var screen_size
 
 var health = 100
 var maxHealth = 100
-onready var zeraHealth = get_node("../CanvasLayer/ZeraUI/Frame/HealthBar")
+onready var zeraHealth:TextureProgress = get_node("../CanvasLayer/ZeraUI/Frame/HealthBar")
+
+var meter = 0
+var maxMeter = 100
+onready var zeraMeter:TextureProgress = get_node("../CanvasLayer/ZeraUI/Frame/SpecialBar")
 
 var isPunching = false
 var canDoubleHit = false
@@ -34,7 +38,8 @@ onready var animationPlayer = $AnimationPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
-	zeraHealth.value = (health / maxHealth) * 100.0
+	zeraHealth.value = clamp(health / maxHealth * 100.0, 0, 100)
+	zeraMeter.value = clamp(meter/maxMeter * 100.0, 0, 100)
 	
 func _physics_process(delta):
 	self.z_index = self.position.y
@@ -169,13 +174,18 @@ func stunHit(damageTake, stunFrame):
 func _on_HurtArea_area_entered(area):
 	if (area.get_parent().get_node_or_null("enemy") != null):
 		
+		meter = clamp(meter+25, 0 , 100)
+		
+		zeraMeter.set_value(clamp(meter/maxMeter*100.0, 0, 100))
+		print(zeraMeter.value)
 		var charHurt = area.get_parent()
 		
 		if (charHurt.health > 0 and isPunching):
 			charHurt.stunHit(10.0, .75)
+			
 		elif (charHurt.health > 0 and isKicking):
 			charHurt.stunHit(20.0, 1.75)
-		
+			
 
 
 func _on_Area2D_area_entered(area):

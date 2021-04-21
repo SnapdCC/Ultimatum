@@ -1,16 +1,14 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Misc/healthBarUnder.png" type="Texture" id=1]
-[ext_resource path="res://Misc/healthBarProgress.png" type="Texture" id=2]
+[ext_resource path="res://User Interface/UI Elements/SpecialBar.png" type="Texture" id=1]
+[ext_resource path="res://User Interface/UI Elements/HealthBar.png" type="Texture" id=2]
 [ext_resource path="res://User Interface/UI Elements/Portrait.png" type="Texture" id=3]
 [ext_resource path="res://User Interface/UI Elements/Name.png" type="Texture" id=4]
 [ext_resource path="res://User Interface/UI Elements/Frame.png" type="Texture" id=5]
 
 [node name="ZeraUI" type="Control"]
-margin_left = 10.0
-margin_top = 15.0
-margin_right = 50.0
-margin_bottom = 55.0
+margin_right = 225.0
+margin_bottom = 45.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -24,15 +22,13 @@ __meta__ = {
 }
 
 [node name="HealthBar" type="TextureProgress" parent="Frame"]
-margin_left = 32.8828
-margin_top = 35.8449
-margin_right = 632.883
-margin_bottom = 109.845
-rect_scale = Vector2( 0.310846, 0.0641034 )
-value = 50.0
-texture_under = ExtResource( 1 )
+margin_left = 33.0
+margin_top = 36.0
+margin_right = 220.0
+margin_bottom = 41.0
+value = 100.0
 texture_progress = ExtResource( 2 )
-tint_progress = Color( 1, 0, 0, 1 )
+tint_progress = Color( 0, 1, 0.0156863, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -50,6 +46,18 @@ margin_top = 2.35969
 margin_right = 127.418
 margin_bottom = 42.3597
 texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpecialBar" type="TextureProgress" parent="Frame"]
+margin_left = 39.0
+margin_top = 29.0
+margin_right = 129.0
+margin_bottom = 34.0
+value = 100.0
+texture_progress = ExtResource( 1 )
+tint_progress = Color( 0, 0.741176, 1, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
