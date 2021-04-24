@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sounds/SoundEffectStream.tscn" type="PackedScene" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://Player/Sprites/idlestancePlayerCharacter.png" type="Texture" id=12]
 [ext_resource path="res://Player/Sprites/walkCycleMaincharacerFixed.png" type="Texture" id=13]
 [ext_resource path="res://Player/Sprites/SpecialAttackSprite.png" type="Texture" id=14]
+[ext_resource path="res://Sounds/Woosh_1.ogg" type="AudioStream" id=15]
+[ext_resource path="res://Sounds/Woosh_2.ogg" type="AudioStream" id=16]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 26.6944
@@ -210,11 +212,31 @@ tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
 "clips": [ {
+<<<<<<< Updated upstream
 "end_offset": 0.0404028,
 "start_offset": 0.0,
 "stream": ExtResource( 4 )
 } ],
 "times": PoolRealArray( 0.198121 )
+=======
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 16 )
+} ],
+"times": PoolRealArray( 0.1 )
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("SoundEffectStream:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+>>>>>>> Stashed changes
 }
 
 [sub_resource type="Animation" id=21]
@@ -254,6 +276,18 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ Vector2( -1, -31 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("SoundEffectStream:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=22]
@@ -335,6 +369,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id=23]
 resource_name = "Hurt"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -370,6 +405,18 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( -1, -31 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("SoundEffectStream:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
 }
 
 [sub_resource type="Animation" id=24]
@@ -472,7 +519,11 @@ tracks/4/keys = {
 "clips": [ {
 "end_offset": 0.0,
 "start_offset": 0.0,
+<<<<<<< Updated upstream
 "stream": ExtResource( 4 )
+=======
+"stream": ExtResource( 15 )
+>>>>>>> Stashed changes
 } ],
 "times": PoolRealArray( 0.3 )
 }
@@ -618,10 +669,17 @@ anims/Special = SubResource( 26 )
 anims/Walk = SubResource( 27 )
 
 [node name="Sprite" type="Sprite" parent="."]
+<<<<<<< Updated upstream
 position = Vector2( -1, -35 )
 texture = ExtResource( 14 )
 region_enabled = true
 region_rect = Rect2( 301, 50, 39, 103 )
+=======
+position = Vector2( -1, -31 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 337, 2, 76, 98 )
+>>>>>>> Stashed changes
 
 [node name="HurtArea" type="Area2D" parent="Sprite"]
 position = Vector2( 1, 31 )
@@ -632,7 +690,6 @@ collision_mask = 4
 [node name="CollisionPunch" type="CollisionShape2D" parent="Sprite/HurtArea"]
 position = Vector2( 29.3462, -57.3518 )
 shape = SubResource( 28 )
-disabled = true
 
 [node name="Collision2ndPunch" type="CollisionShape2D" parent="Sprite/HurtArea"]
 position = Vector2( 21.6912, -57.7319 )
@@ -645,6 +702,10 @@ shape = SubResource( 30 )
 disabled = true
 
 [node name="SoundEffectStream" parent="." instance=ExtResource( 2 )]
+<<<<<<< Updated upstream
+=======
+stream = ExtResource( 15 )
+>>>>>>> Stashed changes
 
 [node name="player" type="Node" parent="."]
 

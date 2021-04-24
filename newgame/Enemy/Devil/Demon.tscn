@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=20 format=2]
+=======
+[gd_scene load_steps=21 format=2]
+>>>>>>> Stashed changes
 
 [ext_resource path="res://Enemy/Devil/idleDemonSprite.png" type="Texture" id=1]
 [ext_resource path="res://Enemy/Devil/walkCycleDemonSprite.png" type="Texture" id=2]
@@ -9,10 +13,14 @@
 [ext_resource path="res://Enemy/Devil/Demon.gd" type="Script" id=7]
 [ext_resource path="res://User Interface/UI Elements/MinionHealthBar.png" type="Texture" id=8]
 [ext_resource path="res://Misc/healthBarProgress.png" type="Texture" id=9]
+<<<<<<< Updated upstream
+=======
+[ext_resource path="res://Sounds/Woosh_3.ogg" type="AudioStream" id=10]
+>>>>>>> Stashed changes
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 20.4207
-height = 32.8857
+height = 46.6135
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 19.7907
@@ -203,7 +211,11 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id=7]
 resource_name = "Stun"
+<<<<<<< Updated upstream
 length = 0.2
+=======
+length = 0.1
+>>>>>>> Stashed changes
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -225,7 +237,11 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
+<<<<<<< Updated upstream
 "update": 1,
+=======
+"update": 0,
+>>>>>>> Stashed changes
 "values": [ Rect2( 27, 8, 43, 80 ) ]
 }
 tracks/2/type = "value"
@@ -237,8 +253,13 @@ tracks/2/enabled = true
 tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
+<<<<<<< Updated upstream
 "update": 1,
 "values": [ Vector2( 0, -39 ) ]
+=======
+"update": 0,
+"values": [ Vector2( 0, -37 ) ]
+>>>>>>> Stashed changes
 }
 
 [sub_resource type="Animation" id=8]
@@ -296,7 +317,7 @@ collision_layer = 4
 collision_mask = 2147483650
 
 [node name="Hitbox" type="CollisionShape2D" parent="DemonHitbox"]
-position = Vector2( -1.25992, -34.9628 )
+position = Vector2( 0, -41.2624 )
 shape = SubResource( 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="DemonHitbox"]
@@ -304,12 +325,21 @@ position = Vector2( -1.25992, -34.9628 )
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+<<<<<<< Updated upstream
 anims/Death = SubResource( 3 )
 anims/Fire = SubResource( 4 )
 anims/Idle = SubResource( 5 )
 anims/Punch = SubResource( 6 )
 anims/Stun = SubResource( 7 )
 anims/Walk = SubResource( 8 )
+=======
+anims/Death = SubResource( 5 )
+anims/Fire = SubResource( 6 )
+anims/Idle = SubResource( 3 )
+anims/Punch = SubResource( 7 )
+anims/Stun = SubResource( 10 )
+anims/Walk = SubResource( 4 )
+>>>>>>> Stashed changes
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -39 )
