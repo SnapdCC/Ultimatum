@@ -8,8 +8,8 @@ var health = 100
 var maxHealth = 100
 onready var zeraHealth:TextureProgress = get_node("../CanvasLayer/ZeraUI/Frame/HealthBar")
 
-var meter = 0.0
-var maxMeter = 100.0
+var meter:float = 0.0
+export var maxMeter:float = 100.0
 onready var zeraMeter:TextureProgress = get_node("../CanvasLayer/ZeraUI/Frame/SpecialBar")
 
 var isPunching = false
@@ -173,8 +173,10 @@ func stunHit(damageTake, stunFrame):
 
 # if an attack lands
 func _on_HurtArea_area_entered(area):
+	
 	if (area.get_parent().get_node_or_null("enemy") != null):
-		print(zeraMeter.value)
+		meter = meter+25.0
+		print(meter)
 		var charHurt = area.get_parent()
 		
 		if (charHurt.health > 0 and isPunching):
@@ -184,8 +186,7 @@ func _on_HurtArea_area_entered(area):
 			charHurt.stunHit(50.0, 1.75)
 	
 	if (area.get_parent().get_node_or_null("boss") != null):
-		meter = clamp(meter+25, 0 , 100)
-		
+		meter = meter+25.0
 		zeraMeter.set_value(clamp(meter/maxMeter*100.0, 0, 100))
 		print(zeraMeter.value)
 		var charHurt = area.get_parent()
@@ -197,10 +198,9 @@ func _on_HurtArea_area_entered(area):
 		elif (charHurt.health > 0 and isKicking):
 			meter += 15
 			charHurt.stunHit(20.0, 1.75)
-		
-		
-		meter = int(min(meter, 100))
-		zeraMeter.value = (meter / maxMeter) * 100.0
+	if(meter>maxMeter):
+		meter=maxMeter
+	zeraMeter.value = (meter * 100.0 / maxMeter)
 
 
 func _on_Area2D_area_entered(area):
