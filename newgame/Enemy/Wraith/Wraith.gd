@@ -65,7 +65,7 @@ func animationSwapper(anim):
 func _on_Punchbox_area_entered(area):
 	if ((area.get_parent().get_node_or_null("player") != null) and (playerPosition.health > 0)):
 		var charHurt = area.get_parent()
-			
+		
 		charHurt.stunHit(25.0, 0.5)
 		
 func enemyDie():
@@ -88,7 +88,7 @@ func stunHit(damageTake, stunFrame):
 		enemyDie()
 	else:
 		inStun = true
-		animationPlayer.playback_speed = 1 / stunFrame
+		animationPlayer.playback_speed = 0.5 / stunFrame
 		
 		if tempAnim == "Hurt":
 			animationPlayer.stop()

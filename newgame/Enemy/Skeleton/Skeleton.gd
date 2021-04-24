@@ -61,6 +61,10 @@ func animationSwapper(anim):
 func _on_Punchbox_area_entered(area):
 	if ((area.get_parent().get_node_or_null("player") != null) and (playerPosition.health > 0)):
 		var charHurt = area.get_parent()
+		
+		if (charHurt.tempAnim == "Guard"):
+			stunHit(0, 2)
+			$attackCooldown.start()
 			
 		charHurt.stunHit(25.0, 0.5)
 		
@@ -83,14 +87,14 @@ func stunHit(damageTake, stunFrame):
 		dontLoop = true
 		enemyDie()
 	else:
+		isPunching = false
+		
 		inStun = true
 		animationPlayer.playback_speed = 0.5 / stunFrame
 		
-		if tempAnim == "Hurt":
-			animationPlayer.stop()
+		animationPlayer.stop()
 		
 		tempAnim = "Hurt"
-		
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
@@ -104,6 +108,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		queue_free()
 		
 	if (anim_name == "Hurt"):
+		animationPlayer.stop()
 		animationPlayer.playback_speed = 1
 		inStun = false
 

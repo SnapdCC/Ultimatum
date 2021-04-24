@@ -160,15 +160,14 @@ func stunHit(damageTake, stunFrame):
 		if(!isGuarding):
 			inStun = true
 			
+			isPunching = false
+			isKicking = false
+			isDoubleHitActive = false
+			
 			animationPlayer.stop()
 			
 			animationPlayer.playback_speed = 1 / stunFrame
-		
-			if (isPunching):
-				isPunching = false
-			elif (isKicking):
-				isKicking = false
-		
+			
 			tempAnim = "Hurt"
 
 # if an attack lands
