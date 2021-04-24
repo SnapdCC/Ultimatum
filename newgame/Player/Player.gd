@@ -77,8 +77,10 @@ func _physics_process(delta):
 		tempAnim = "Guard"
 		
 	if (Input.is_action_just_pressed("super") and !isSuper and !isPunching and !isKicking and !inStun and !isDead):
-		isSuper = true
-		tempAnim = "Special"
+		if (meter == maxMeter):
+			meter = 0
+			isSuper = true
+			tempAnim = "Special"
 		
 	if (!isPunching and !isKicking and !isGuarding and !inStun and !isDead and !isSuper):
 		if Input.is_action_pressed("ui_right"):
@@ -145,6 +147,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	elif (anim_name == "Hurt"):
 		animationPlayer.playback_speed = 1
 		inStun = false
+	elif (anim_name == "Special"):
+		isSuper = false
 
 func stunHit(damageTake, stunFrame):
 	
@@ -183,12 +187,15 @@ func _on_HurtArea_area_entered(area):
 		var charHurt = area.get_parent()
 		
 		if (charHurt.health > 0 and isPunching):
-			meter += 7
+			meter += 15
 			charHurt.stunHit(25.0, .75)
 			
 		elif (charHurt.health > 0 and isKicking):
-			meter += 15
+			meter += 25
 			charHurt.stunHit(50.0, 1.75)
+			
+		elif (charHurt.health > 0 and isSuper):
+			charHurt.stunHit(100.0, 2.5)
 			
 		print(meter)
 	
@@ -223,6 +230,8 @@ func _on_AnimationPlayer_animation_started(anim_name):
 			isPunching = true
 		if (anim_name == "Heavy Attack"):
 			isKicking = true
+		if (anim_name == "Special"):
+			isSuper = true
 
 
 func _on_transition_timeout():
