@@ -109,9 +109,10 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		isPunching = false
 		noWalk = false
 		var shoot = fireball.instance()
-		shoot.position = self.position
-		shoot.flipX(self.scale.x)
-		
+		shoot.position = get_child(0).position
+		shoot.flip_X($Sprite.scale.x)
+		add_child(shoot)
+		print(shoot)
 	if (anim_name == "Death"):
 		queue_free()
 		
