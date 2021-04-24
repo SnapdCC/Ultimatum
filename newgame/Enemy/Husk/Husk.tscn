@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Enemy/Husk/WalkSAB_Sprite.png" type="Texture" id=1]
 [ext_resource path="res://Enemy/Husk/DyingSABSprite.png" type="Texture" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://Misc/healthBarProgress.png" type="Texture" id=6]
 [ext_resource path="res://User Interface/UI Elements/MinionHealthBar.png" type="Texture" id=7]
 [ext_resource path="res://Enemy/Husk/SABidleStance.png" type="Texture" id=8]
-[ext_resource path="res://Sounds/HardPunch_2.ogg" type="AudioStream" id=9]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 16.4613
@@ -60,7 +59,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=4]
 resource_name = "Hurt"
-length = 0.2
+length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -96,70 +95,6 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ Vector2( 0, -36 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("AudioStreamPlayer:playing")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-
-[sub_resource type="Animation" id=11]
-resource_name = "HurtKick"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 2 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:region_rect")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Rect2( 191, 13, 45, 70 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ Vector2( 0, -36 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("AudioStreamPlayer:playing")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -252,18 +187,6 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("AudioStreamPlayer:playing")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -381,17 +304,16 @@ shape = SubResource( 2 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Death = SubResource( 3 )
 anims/Hurt = SubResource( 4 )
-anims/HurtKick = SubResource( 11 )
 anims/Idle = SubResource( 5 )
 anims/Punch = SubResource( 6 )
 anims/SandAttack = SubResource( 7 )
 anims/Walk = SubResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -37 )
+position = Vector2( 0, -38 )
 texture = ExtResource( 8 )
 region_enabled = true
-region_rect = Rect2( 6, 3, 36, 72 )
+region_rect = Rect2( 59, 0, 36, 75 )
 
 [node name="Punchbox" type="Area2D" parent="Sprite"]
 collision_layer = 2
@@ -435,9 +357,6 @@ tint_progress = Color( 0.584314, 0.419608, 0.352941, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
 [connection signal="area_entered" from="Sprite/Punchbox" to="." method="_on_Punchbox_area_entered"]
