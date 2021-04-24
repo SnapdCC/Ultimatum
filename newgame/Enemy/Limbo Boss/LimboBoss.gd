@@ -119,6 +119,9 @@ func stunHit(damageTake, stunFrame):
 		dontLoop = true
 		bossDie()
 	else:
+		isPunching = false
+		isCharging = false
+		
 		inStun = true
 		animationPlayer.playback_speed = 1 / stunFrame
 		
