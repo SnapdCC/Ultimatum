@@ -181,11 +181,23 @@ func _on_HurtArea_area_entered(area):
 		var charHurt = area.get_parent()
 		
 		if (charHurt.health > 0 and isPunching):
+			charHurt.stunHit(25.0, .75)
+			
+		elif (charHurt.health > 0 and isKicking):
+			charHurt.stunHit(50.0, 1.75)
+	
+	if (area.get_parent().get_node_or_null("boss") != null):
+		meter = clamp(meter+25, 0 , 100)
+		
+		zeraMeter.set_value(clamp(meter/maxMeter*100.0, 0, 100))
+		print(zeraMeter.value)
+		var charHurt = area.get_parent()
+		
+		if (charHurt.health > 0 and isPunching):
 			charHurt.stunHit(10.0, .75)
 			
 		elif (charHurt.health > 0 and isKicking):
 			charHurt.stunHit(20.0, 1.75)
-			
 
 
 func _on_Area2D_area_entered(area):
@@ -194,6 +206,8 @@ func _on_Area2D_area_entered(area):
 
 func _on_AnimationPlayer_animation_started(anim_name):
 		if (anim_name == "Punch"):
+			isPunching = true
+		if (anim_name == "Double Punch"):
 			isPunching = true
 		if (anim_name == "Heavy Attack"):
 			isKicking = true
