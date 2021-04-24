@@ -1,11 +1,13 @@
 extends KinematicBody2D
 
+const fireball = preload("res://Enemy/Wraith/Fireball.tscn")
+
 onready var playerPosition = get_parent().get_node("Player")
 onready var enemyPosition = get_parent().get_node("Wraith")
 onready var animationPlayer = $AnimationPlayer
 onready var enemyHealth = get_node("./Health/HealthBar")
-var maxHealth = int(100)
-var health = int(100)
+var maxHealth = 100
+var health = 100
 
 var tempAnim
 var anim_new
@@ -20,7 +22,7 @@ var inStun = false
 var enemySpeed = 20
 
 func _ready():
-	enemyHealth.value = (health / maxHealth) * 100.0
+	enemyHealth.value = float((health / maxHealth) * 100.0)
 	if (!isWalking and alive):
 		tempAnim = "Idle"
 
@@ -96,12 +98,20 @@ func stunHit(damageTake, stunFrame):
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	if (anim_name == "Punch"||anim_name == "Fireball"):
+	if (anim_name == "Punch"):
 		$attackCooldown.start()
 		canHit = false
 		isPunching = false
 		noWalk = false
-	
+	if (anim_name == "Fireball"):
+		$attackCooldown.start()
+		canHit = false
+		isPunching = false
+		noWalk = false
+		var shoot = fireball.instance()
+		shoot.position = self.position
+		shoot.flipX(self.scale.x)
+		
 	if (anim_name == "Death"):
 		queue_free()
 		
