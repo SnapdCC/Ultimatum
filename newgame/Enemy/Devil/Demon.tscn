@@ -12,7 +12,7 @@
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 20.4207
-height = 46.6135
+height = 32.8857
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 19.7907
@@ -296,7 +296,7 @@ collision_layer = 4
 collision_mask = 2147483650
 
 [node name="Hitbox" type="CollisionShape2D" parent="DemonHitbox"]
-position = Vector2( 0, -41.2624 )
+position = Vector2( -1.25992, -34.9628 )
 shape = SubResource( 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="DemonHitbox"]

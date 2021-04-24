@@ -11,11 +11,11 @@
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 16.4613
-height = 57.0226
+height = 39.0342
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 15.7542
-height = 43.699
+height = 41.1556
 
 [sub_resource type="Animation" id=3]
 resource_name = "Death"
@@ -294,7 +294,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="Hitbox" type="CollisionShape2D" parent="HuskHitbox"]
-position = Vector2( 1.63301, -45.3339 )
+position = Vector2( 2.47485, -37.4767 )
 shape = SubResource( 1 )
 
 [node name="Collision" type="CollisionShape2D" parent="HuskHitbox"]
