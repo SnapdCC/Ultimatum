@@ -115,6 +115,8 @@ pause_mode = 2
 [node name="ZeraUI" parent="CanvasLayer" instance=ExtResource( 8 )]
 
 [node name="BossUI" parent="CanvasLayer" instance=ExtResource( 2 )]
+margin_top = 0.969246
+margin_bottom = 44.9692
 
 [node name="Pause" parent="CanvasLayer" instance=ExtResource( 4 )]
 margin_right = 0.0
@@ -123,16 +125,16 @@ margin_bottom = 6.10352e-05
 [node name="Dialogic" type="Node" parent="."]
 script = ExtResource( 7 )
 
+[node name="Wraith" parent="." instance=ExtResource( 14 )]
+position = Vector2( 371.63, 258.348 )
+
 [node name="Husk" parent="." instance=ExtResource( 13 )]
-position = Vector2( 617.315, 252.236 )
+position = Vector2( 783.266, 268.45 )
 
 [node name="Skeleton" parent="." instance=ExtResource( 11 )]
 position = Vector2( 702.368, 245.916 )
 
 [node name="Demon" parent="." instance=ExtResource( 12 )]
 position = Vector2( 645.976, 236.339 )
-
-[node name="Wraith" parent="." instance=ExtResource( 14 )]
-position = Vector2( 390.593, 255.514 )
 
 [editable path="LimboBoss"]
