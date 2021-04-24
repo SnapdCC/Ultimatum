@@ -618,10 +618,10 @@ anims/Special = SubResource( 26 )
 anims/Walk = SubResource( 27 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -1, -31 )
-texture = ExtResource( 3 )
+position = Vector2( -1, -35 )
+texture = ExtResource( 14 )
 region_enabled = true
-region_rect = Rect2( 52, 37, 45, 98 )
+region_rect = Rect2( 301, 50, 39, 103 )
 
 [node name="HurtArea" type="Area2D" parent="Sprite"]
 position = Vector2( 1, 31 )

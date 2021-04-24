@@ -6,7 +6,6 @@ onready var animationPlayer = $AnimationPlayer
 onready var enemyHealth = get_node("./Health/HealthBar")
 var maxHealth = int(100)
 var health = int(100)
-
 var tempAnim
 var anim_new
 var isWalking = false
@@ -84,7 +83,7 @@ func stunHit(damageTake, stunFrame):
 		enemyDie()
 	else:
 		inStun = true
-		animationPlayer.playback_speed = 1 / stunFrame
+		animationPlayer.playback_speed = 0.5 / stunFrame
 		
 		if tempAnim == "Stun":
 			animationPlayer.stop()

@@ -18,7 +18,7 @@ height = 32.8857
 radius = 19.7907
 height = 34.7756
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "Death"
 length = 0.5
 tracks/0/type = "value"
@@ -58,7 +58,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -37 ), Vector2( 0, -33 ), Vector2( 0, -24 ), Vector2( 0, -18 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 resource_name = "Fire"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -109,8 +109,7 @@ tracks/3/keys = {
 "values": [ true, false, true ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Idle"
+[sub_resource type="Animation" id=5]
 length = 0.5
 loop = true
 tracks/0/type = "value"
@@ -150,9 +149,9 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -37 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 resource_name = "Punch"
-length = 0.5
+length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -172,7 +171,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3, 0.4 ),
+"times": PoolRealArray( 0, 0.2, 0.3, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ Rect2( 15, 8, 38, 80 ), Rect2( 86, 12, 42, 76 ), Rect2( 151, 12, 48, 76 ), Rect2( 86, 12, 42, 76 ) ]
@@ -184,10 +183,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ Vector2( 0, -37 ) ]
+"values": [ Vector2( 0, -40 ), Vector2( 0, -37 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Sprite/AttackArea/Punch:disabled")
@@ -196,15 +195,15 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.3, 0.4 ),
+"times": PoolRealArray( 0, 0.3, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=7]
 resource_name = "Stun"
-length = 0.1
+length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -226,7 +225,7 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
+"update": 1,
 "values": [ Rect2( 27, 8, 43, 80 ) ]
 }
 tracks/2/type = "value"
@@ -238,12 +237,11 @@ tracks/2/enabled = true
 tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, -37 ) ]
+"update": 1,
+"values": [ Vector2( 0, -39 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "Walk"
+[sub_resource type="Animation" id=8]
 length = 1.4
 loop = true
 tracks/0/type = "value"
@@ -283,10 +281,11 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -37 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=8]
-
 [sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 15.8651, 5.15247 )
+extents = Vector2( 8.13641, 6.51526 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 20.5397, 6.20028 )
 
 [node name="Demon" type="KinematicBody2D"]
 position = Vector2( 0, -0.5 )
@@ -305,15 +304,15 @@ position = Vector2( -1.25992, -34.9628 )
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Death = SubResource( 5 )
-anims/Fire = SubResource( 6 )
-anims/Idle = SubResource( 3 )
-anims/Punch = SubResource( 7 )
-anims/Stun = SubResource( 10 )
-anims/Walk = SubResource( 4 )
+anims/Death = SubResource( 3 )
+anims/Fire = SubResource( 4 )
+anims/Idle = SubResource( 5 )
+anims/Punch = SubResource( 6 )
+anims/Stun = SubResource( 7 )
+anims/Walk = SubResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -37 )
+position = Vector2( 0, -39 )
 texture = ExtResource( 6 )
 region_enabled = true
 region_rect = Rect2( 27, 8, 43, 80 )
@@ -323,12 +322,12 @@ collision_layer = 2
 
 [node name="Punch" type="CollisionShape2D" parent="Sprite/AttackArea"]
 position = Vector2( 16.694, 0 )
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 disabled = true
 
 [node name="Fire" type="CollisionShape2D" parent="Sprite/AttackArea"]
-position = Vector2( 20.8344, -14.1741 )
-shape = SubResource( 9 )
+position = Vector2( 22.9935, -16.379 )
+shape = SubResource( 10 )
 disabled = true
 
 [node name="attackCooldown" type="Timer" parent="."]
