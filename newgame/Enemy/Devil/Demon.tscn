@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Enemy/Devil/idleDemonSprite.png" type="Texture" id=1]
 [ext_resource path="res://Enemy/Devil/walkCycleDemonSprite.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Enemy/Devil/Demon.gd" type="Script" id=7]
 [ext_resource path="res://User Interface/UI Elements/MinionHealthBar.png" type="Texture" id=8]
 [ext_resource path="res://Misc/healthBarProgress.png" type="Texture" id=9]
+[ext_resource path="res://Sounds/Woosh_1.ogg" type="AudioStream" id=10]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 20.4207
@@ -200,6 +201,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [ true, false, true ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("AudioStreamPlayer:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
 
 [sub_resource type="Animation" id=7]
 resource_name = "Stun"
@@ -312,10 +325,10 @@ anims/Stun = SubResource( 7 )
 anims/Walk = SubResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -39 )
-texture = ExtResource( 6 )
+position = Vector2( 0, -37 )
+texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 27, 8, 43, 80 )
+region_rect = Rect2( 86, 12, 42, 76 )
 
 [node name="AttackArea" type="Area2D" parent="Sprite"]
 collision_layer = 2
@@ -358,6 +371,9 @@ tint_progress = Color( 0.501961, 0.0705882, 0.0705882, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
 [connection signal="area_entered" from="Sprite/AttackArea" to="." method="_on_AttackArea_area_entered"]
