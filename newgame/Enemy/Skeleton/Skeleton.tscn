@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Enemy/Skeleton/idleStanceSkeleton.png" type="Texture" id=1]
 [ext_resource path="res://Misc/healthBarProgress.png" type="Texture" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://Enemy/Skeleton/walkCycleSkeletonSprite.png" type="Texture" id=6]
 [ext_resource path="res://Enemy/Skeleton/PunchattackSkeletonSprite.png" type="Texture" id=7]
 [ext_resource path="res://Enemy/Skeleton/hitstunSkeleton.png" type="Texture" id=8]
-[ext_resource path="res://Sounds/Woosh_1.ogg" type="AudioStream" id=9]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 20.966
@@ -189,18 +188,6 @@ tracks/3/keys = {
 "update": 1,
 "values": [ true, false, true ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("AudioStreamPlayer:playing")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
-}
 
 [sub_resource type="Animation" id=7]
 resource_name = "Walk"
@@ -270,10 +257,10 @@ anims/Punch = SubResource( 6 )
 anims/Walk = SubResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -19 )
-texture = ExtResource( 5 )
+position = Vector2( 0, -38 )
+texture = ExtResource( 6 )
 region_enabled = true
-region_rect = Rect2( 227, 52, 68, 39 )
+region_rect = Rect2( 46, 14, 35, 75 )
 
 [node name="Punchbox" type="Area2D" parent="Sprite"]
 gravity = 0.0
@@ -289,9 +276,6 @@ wait_time = 3.0
 autostart = true
 
 [node name="enemy" type="Node" parent="."]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
 
 [node name="Health" type="TextureRect" parent="."]
 margin_left = -31.2386
