@@ -108,8 +108,6 @@ func stunHit(damageTake, stunFrame):
 	health -= damageTake
 	bossHealth.value = (health / maxHealth) * 100.0
 		
-	tempAnim = "Hurt"
-		
 	if (health <= 0):
 		animationPlayer.playback_speed = 1
 		isWalking = false
@@ -119,15 +117,11 @@ func stunHit(damageTake, stunFrame):
 		dontLoop = true
 		bossDie()
 	else:
-		isPunching = false
-		isCharging = false
+		if (!isCharging):
+			inStun = true
+			animationPlayer.playback_speed = 1 / stunFrame
 		
-		inStun = true
-		animationPlayer.playback_speed = 1 / stunFrame
-		
-		if (isPunching or isCharging):
 			isPunching = false
-			isCharging = false
 			tempAnim = "Hurt"
 
 

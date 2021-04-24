@@ -18,6 +18,7 @@ var isDoubleHitActive = false
 var isKicking = false
 var isGuarding = false
 var inStun = false
+var isSuper = false
 var isDead = false
 var lose = false
 
@@ -59,23 +60,27 @@ func _physics_process(delta):
 		canDoubleHit = false
 
 # watches for punch and if double punch is available
-	if (Input.is_action_just_pressed("punch") and !isDoubleHitActive and !isKicking and !isGuarding and !inStun and !isDead):
+	if (Input.is_action_just_pressed("punch") and !isSuper and !isDoubleHitActive and !isKicking and !isGuarding and !inStun and !isDead):
 		canDoubleHit = true
 		isPunching = true
 		tempAnim = "Punch"
 		
 		#plays kick animation and attack
-	if (Input.is_action_just_pressed("kick") and !isDoubleHitActive and !isPunching and !isGuarding and !inStun and !isDead):
+	if (Input.is_action_just_pressed("kick") and !isSuper and !isDoubleHitActive and !isPunching and !isGuarding and !inStun and !isDead):
 		if (isPunching):
 			isPunching = false
 		isKicking = true
 		tempAnim = "Heavy Attack"
 		
-	if (Input.is_action_just_pressed("guard") and !isPunching and !isKicking and !inStun and !isDead):
+	if (Input.is_action_just_pressed("guard") and !isSuper and !isPunching and !isKicking and !inStun and !isDead):
 		isGuarding = true
 		tempAnim = "Guard"
 		
-	if (!isPunching and !isKicking and !isGuarding and !inStun and !isDead):
+	if (Input.is_action_just_pressed("super") and !isSuper and !isPunching and !isKicking and !inStun and !isDead):
+		isSuper = true
+		tempAnim = "Special"
+		
+	if (!isPunching and !isKicking and !isGuarding and !inStun and !isDead and !isSuper):
 		if Input.is_action_pressed("ui_right"):
 			velocity.x += 1
 		if Input.is_action_pressed("ui_left"):
@@ -158,31 +163,34 @@ func stunHit(damageTake, stunFrame):
 		playerDeath()
 	else:
 		if(!isGuarding):
-			inStun = true
+			animationPlayer.stop()
 			
 			isPunching = false
 			isKicking = false
 			isDoubleHitActive = false
 			
-			animationPlayer.stop()
+			inStun = true
 			
 			animationPlayer.playback_speed = 1 / stunFrame
 			
-			tempAnim = "Hurt"
+			if (tempAnim != "Hurt"):
+				tempAnim = "Hurt"
 
 # if an attack lands
 func _on_HurtArea_area_entered(area):
 	
 	if (area.get_parent().get_node_or_null("enemy") != null):
-		meter = meter+25.0
-		print(meter)
 		var charHurt = area.get_parent()
 		
 		if (charHurt.health > 0 and isPunching):
+			meter += 7
 			charHurt.stunHit(25.0, .75)
 			
 		elif (charHurt.health > 0 and isKicking):
+			meter += 15
 			charHurt.stunHit(50.0, 1.75)
+			
+		print(meter)
 	
 	if (area.get_parent().get_node_or_null("boss") != null):
 		meter = meter+25.0
@@ -197,8 +205,10 @@ func _on_HurtArea_area_entered(area):
 		elif (charHurt.health > 0 and isKicking):
 			meter += 15
 			charHurt.stunHit(20.0, 1.75)
-	if(meter>maxMeter):
-		meter=maxMeter
+	
+	if (meter > maxMeter):
+		meter= maxMeter
+	
 	zeraMeter.value = (meter * 100.0 / maxMeter)
 
 
