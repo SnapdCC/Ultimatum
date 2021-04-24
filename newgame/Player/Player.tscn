@@ -619,9 +619,9 @@ anims/Walk = SubResource( 27 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -1, -31 )
-texture = ExtResource( 3 )
+texture = ExtResource( 12 )
 region_enabled = true
-region_rect = Rect2( 52, 37, 45, 98 )
+region_rect = Rect2( 11, 25, 65, 100 )
 
 [node name="HurtArea" type="Area2D" parent="Sprite"]
 position = Vector2( 1, 31 )
@@ -635,9 +635,8 @@ shape = SubResource( 28 )
 disabled = true
 
 [node name="Collision2ndPunch" type="CollisionShape2D" parent="Sprite/HurtArea"]
-position = Vector2( 21.6912, -57.7319 )
+position = Vector2( 29.3462, -57.3518 )
 shape = SubResource( 29 )
-disabled = true
 
 [node name="CollisionKickShape" type="CollisionShape2D" parent="Sprite/HurtArea"]
 position = Vector2( 22.0486, -20.4737 )
