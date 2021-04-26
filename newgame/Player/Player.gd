@@ -159,6 +159,9 @@ func stunHit(damageTake, stunFrame):
 		
 	print(health / maxHealth)
 	
+	$HitSoundPunch.play()
+	$SoundDuration.start()
+	
 	zeraHealth.value = (health / maxHealth) * 100.0
 	
 	if (health <= 0):
@@ -175,6 +178,7 @@ func stunHit(damageTake, stunFrame):
 			
 			inStun = true
 			
+			
 			animationPlayer.playback_speed = 1 / stunFrame
 			
 			if (tempAnim != "Hurt"):
@@ -182,6 +186,7 @@ func stunHit(damageTake, stunFrame):
 
 # if an attack lands
 func _on_HurtArea_area_entered(area):
+	
 	
 	if (area.get_parent().get_node_or_null("enemy") != null):
 		var charHurt = area.get_parent()
@@ -220,7 +225,7 @@ func _on_HurtArea_area_entered(area):
 
 
 func _on_Area2D_area_entered(area):
-	pass # Replace with function body.
+	pass
 
 
 func _on_AnimationPlayer_animation_started(anim_name):
@@ -236,3 +241,8 @@ func _on_AnimationPlayer_animation_started(anim_name):
 
 func _on_transition_timeout():
 	loseTransition()
+
+
+
+func _on_SoundDuration_timeout():
+	$HitSoundPunch.stop()
