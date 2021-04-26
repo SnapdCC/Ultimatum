@@ -25,7 +25,7 @@ var lose = false
 var beginning = Dialogic.start('beginning')
 
 var holder
-var facing_right
+var facing_right = true
 var moveFrameArray = [
 	[load("res://Player/Sprites/PunchSpriteSheet.png"), Rect2(Vector2(629, 0), Vector2(77, 100)),
 	Rect2(Vector2(787, 3), Vector2(63, 97))] 
