@@ -1,15 +1,11 @@
 extends KinematicBody2D
 
 onready var animationPlayer = $AnimationPlayer
-onready var bossHealth = get_node("../CanvasLayer/BossUI/BossFrame/HealthBar")
+onready var bossHealth = get_node_or_null("../CanvasLayer/BossUI/BossFrame/HealthBar")
+onready var Arrow = get_parent().get_node("Level_Transitioner")
+onready var Right_Wall = get_parent().get_node("BackgroundColliders").get_child(1)
 var maxHealth = 200.0
 var health = 200.0
-
-export(NodePath) var Arrow_Path
-var Arrow:Node
-export(NodePath) var Right_Wall_Path
-var Right_Wall:Node
-
 
 var tempAnim
 var anim_new
@@ -32,8 +28,6 @@ onready var bossPosition = get_parent().get_node("LimboBoss")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Arrow = get_node_or_null(Arrow_Path)
-	Right_Wall = get_node_or_null(Right_Wall_Path)
 	bossHealth.value = (health / maxHealth) * 100.0
 	if (!isWalking and alive):
 		tempAnim = "Idle"
@@ -42,11 +36,11 @@ func _physics_process(delta):
 	if(alive and !inStun):
 		isWalking = true
 		if (playerPosition.position.x > position.x):
-			$Sprite.scale.x = -1
-		else:
 			$Sprite.scale.x = 1
+		else:
+			$Sprite.scale.x = -1
 			
-		if ((bossPosition.position.x - playerPosition.position.x) <= 50 && (bossPosition.position.x - playerPosition.position.x) >= -50):
+		if ((self.position.x - playerPosition.position.x) <= 50 && (self.position.x - playerPosition.position.x) >= -50):
 			isWalking = false
 			if (canHit and !isTaunting):
 				if (attackChoice > 6):

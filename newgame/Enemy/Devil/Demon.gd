@@ -1,9 +1,13 @@
 extends KinematicBody2D
 
+
+
 onready var playerPosition = get_parent().get_node("Player")
 onready var enemyPosition = get_parent().get_node("Demon")
 onready var animationPlayer = $AnimationPlayer
 onready var enemyHealth = get_node("./Health/HealthBar")
+onready var bossPoint = get_parent().get_node("Boss_Spawn_Point")
+onready var boss = get_parent().get_node("LimboBoss")
 var maxHealth = int(100)
 var health = int(100)
 var tempAnim
@@ -104,6 +108,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		noWalk = false
 	
 	if (anim_name == "Death"):
+		boss.position = bossPoint.position
 		queue_free()
 		
 	if (anim_name == "Stun"):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Stage_Background.png" type="Texture" id=1]
 [ext_resource path="res://User Interface/LimboBossUI.tscn" type="PackedScene" id=2]
@@ -9,18 +9,15 @@
 [ext_resource path="res://addons/dialogic/Other/DialogicClass.gd" type="Script" id=7]
 [ext_resource path="res://User Interface/ZeraUI.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Misc/SceneTransitioner.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Enemy/Limbo Boss/LimboBossDyingSprite.png" type="Texture" id=10]
-[ext_resource path="res://Enemy/Skeleton/Skeleton.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Enemy/Devil/Demon.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Enemy/Husk/Husk.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Enemy/Wraith/Wraith.tscn" type="PackedScene" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6.46372, 152.839 )
 
-[sub_resource type="NavigationPolygon" id=2]
-
 [node name="Node2D" type="Node2D"]
+
+[node name="Boss_Spawn_Point" type="Node2D" parent="."]
+position = Vector2( 376.824, 237.482 )
 
 [node name="Stage_Background" type="Sprite" parent="."]
 position = Vector2( 450.246, 150.784 )
@@ -89,26 +86,6 @@ scale = Vector2( 1.04745, 1.03845 )
 z_index = 2
 texture = ExtResource( 6 )
 
-[node name="LimboBoss" parent="." instance=ExtResource( 3 )]
-position = Vector2( 847.387, 247.038 )
-rotation = 3.14159
-scale = Vector2( 0.879994, -0.832185 )
-Arrow_Path = NodePath("../Level_Transitioner")
-Right_Wall_Path = NodePath("../BackgroundColliders/CollisionShape2D2")
-
-[node name="Sprite" parent="LimboBoss" index="2"]
-position = Vector2( 0, -80 )
-texture = ExtResource( 10 )
-region_rect = Rect2( 33, 35, 61, 165 )
-
-[node name="Navigation2D" type="Navigation2D" parent="LimboBoss"]
-
-[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="LimboBoss/Navigation2D"]
-position = Vector2( 633.342, -303 )
-rotation = -3.14159
-scale = Vector2( 1.13637, -1.20166 )
-navpoly = SubResource( 2 )
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 pause_mode = 2
 
@@ -123,16 +100,10 @@ margin_bottom = 6.10352e-05
 [node name="Dialogic" type="Node" parent="."]
 script = ExtResource( 7 )
 
-[node name="Wraith" parent="." instance=ExtResource( 14 )]
-position = Vector2( 413.161, 245.44 )
-
-[node name="Husk" parent="." instance=ExtResource( 13 )]
-position = Vector2( 782.705, 259.471 )
-
-[node name="Skeleton" parent="." instance=ExtResource( 11 )]
-position = Vector2( 702.368, 245.916 )
-
 [node name="Demon" parent="." instance=ExtResource( 12 )]
-position = Vector2( 645.976, 236.339 )
+position = Vector2( 297.62, 252.82 )
+
+[node name="LimboBoss" parent="." instance=ExtResource( 3 )]
+position = Vector2( 4602.3, 493.85 )
 
 [editable path="LimboBoss"]
