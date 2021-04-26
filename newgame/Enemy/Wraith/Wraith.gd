@@ -99,10 +99,12 @@ func stunHit(damageTake, stunFrame):
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if (anim_name == "Punch"):
 		$attackCooldown.start()
+		$fireballCooldown.start()
 		canHit = false
 		isPunching = false
 		noWalk = false
 	elif (anim_name == "Fireball"):
+		$attackCooldown.start()
 		$fireballCooldown.start()
 		canHit = false
 		isPunching = false
