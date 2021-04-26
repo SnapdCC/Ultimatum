@@ -76,14 +76,27 @@ func animationSwapper(anim):
 	
 
 func _on_HurtAreaLimboPunch_area_entered(area):
-		if ((area.get_parent().get_node_or_null("player") != null) and (playerPosition.health > 0)):
-			var charHurt = area.get_parent()
+	if ((area.get_parent().get_node_or_null("player") != null) and (playerPosition.health > 0)):
+		var charHurt = area.get_parent()
 			
-			charHurt.stunHit(20.0, 0.5)
+		if charHurt.health <= 0:
+			tempAnim = "Taunt"
+			isTaunting = true
+		
+		if(isPunching):
+			charHurt.stunHit(15.0, 0.25)
 			
-			if charHurt.health <= 0:
-				tempAnim = "Taunt"
-				isTaunting = true
+		elif(isCharging):
+			charHurt.stunHit(20.0, .1)
+		
+		if (isPunching):
+			$HitSoundPunch.play()
+			$SoundDurationPunch.start()
+		
+		if (isCharging):
+			$HitSoundCharge.play()
+			$SoundDurationCharge.start()
+
 
 
 func _on_LimboHitbox_area_entered(area):
@@ -108,6 +121,7 @@ func stunHit(damageTake, stunFrame):
 	health -= damageTake
 	bossHealth.value = (health / maxHealth) * 100.0
 		
+	
 	if (health <= 0):
 		animationPlayer.playback_speed = 1
 		isWalking = false
@@ -163,3 +177,11 @@ func _on_AnimationPlayer_animation_started(anim_name):
 			isPunching = true
 		elif (anim_name == "Charge"):
 			isCharging = true
+
+
+func _on_SoundDurationPunch_timeout():
+	$HitSoundPunch.stop()
+
+
+func _on_SoundDurationCharge_timeout():
+	$HitSoundCharge.stop()

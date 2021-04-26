@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Enemy/Limbo Boss/hurtLimboSpriteSheet.png" type="Texture" id=1]
 [ext_resource path="res://Enemy/Limbo Boss/IdleLimbo.png" type="Texture" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Enemy/Limbo Boss/LimboBoss.gd" type="Script" id=7]
 [ext_resource path="res://Enemy/Limbo Boss/ChargeLimbo.png" type="Texture" id=8]
 [ext_resource path="res://Sounds/Woosh_4.ogg" type="AudioStream" id=9]
+[ext_resource path="res://Sounds/HardPunch_4.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Sounds/SoftPunch_4.ogg" type="AudioStream" id=11]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 25.8185
@@ -451,9 +453,23 @@ wait_time = 3.0
 stream = ExtResource( 9 )
 
 [node name="enemy" type="Node" parent="."]
+
+[node name="HitSoundPunch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+
+[node name="HitSoundCharge" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+
+[node name="SoundDurationPunch" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="SoundDurationCharge" type="Timer" parent="."]
+wait_time = 0.5
 [connection signal="area_entered" from="LimboHitbox" to="." method="_on_LimboHitbox_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
 [connection signal="area_entered" from="Sprite/HurtAreaLimboPunch" to="." method="_on_HurtAreaLimboPunch_area_entered"]
 [connection signal="timeout" from="attackCooldown" to="." method="_on_attackCooldown_timeout"]
 [connection signal="finished" from="SoundEffectStream" to="." method="_on_SoundEffectStream_finished"]
+[connection signal="timeout" from="SoundDurationPunch" to="." method="_on_SoundDurationPunch_timeout"]
+[connection signal="timeout" from="SoundDurationCharge" to="." method="_on_SoundDurationCharge_timeout"]

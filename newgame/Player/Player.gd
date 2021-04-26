@@ -174,6 +174,8 @@ func stunHit(damageTake, stunFrame):
 			isDoubleHitActive = false
 			
 			inStun = true
+			if (inStun):
+				pass
 			
 			
 			animationPlayer.playback_speed = 1 / stunFrame
@@ -183,7 +185,6 @@ func stunHit(damageTake, stunFrame):
 
 # if an attack lands
 func _on_HurtArea_area_entered(area):
-	
 	
 	if (area.get_parent().get_node_or_null("enemy") != null):
 		var charHurt = area.get_parent()
