@@ -47,13 +47,12 @@ func _physics_process(delta):
 		else:
 			if (canHit):
 				tempAnim = "Fireball"
-			if (isPunching):
-				noWalk = true
-			if(!noWalk):
-				move_and_slide((playerPosition.position - (enemyPosition.position - Vector2(0, 20))).normalized() * enemySpeed)
-				tempAnim = "Walk"
-				$attackCooldown.stop()
-				canHit = true
+			else:
+				if (isPunching):
+					noWalk = true
+				if (!noWalk):
+					move_and_slide((playerPosition.position - (enemyPosition.position - Vector2(0, 20))).normalized() * enemySpeed)
+					tempAnim = "Walk"
 	
 	animationSwapper(tempAnim)
 
@@ -103,8 +102,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		canHit = false
 		isPunching = false
 		noWalk = false
-	if (anim_name == "Fireball"):
-		$attackCooldown.start()
+	elif (anim_name == "Fireball"):
+		$fireballCooldown.start()
 		canHit = false
 		isPunching = false
 		noWalk = false
@@ -113,10 +112,10 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		shoot.flip_X($Sprite.scale.x)
 		add_child(shoot)
 		print(shoot)
-	if (anim_name == "Death"):
+	elif (anim_name == "Death"):
 		queue_free()
 		
-	if (anim_name == "Hurt"):
+	elif (anim_name == "Hurt"):
 		animationPlayer.playback_speed = 1
 		inStun = false
 
@@ -127,3 +126,7 @@ func _on_attackCooldown_timeout():
 func _on_AnimationPlayer_animation_started(anim_name):
 	if (anim_name == "Punch"):
 		isPunching = true
+
+
+func _on_fireballCooldown_timeout():
+	pass # Replace with function body.
