@@ -159,9 +159,6 @@ func stunHit(damageTake, stunFrame):
 		
 	print(health / maxHealth)
 	
-	$HitSoundPunch.play()
-	$SoundDuration.start()
-	
 	zeraHealth.value = (health / maxHealth) * 100.0
 	
 	if (health <= 0):
@@ -194,10 +191,14 @@ func _on_HurtArea_area_entered(area):
 		if (charHurt.health > 0 and isPunching):
 			meter += 15
 			charHurt.stunHit(25.0, .75)
+			$HitSoundPunch.play()
+			$SoundDurationPunch.start()
 			
 		elif (charHurt.health > 0 and isKicking):
 			meter += 25
 			charHurt.stunHit(50.0, 1.75)
+			$HitSoundKick.play()
+			$SoundDurationKick.start()
 			
 		elif (charHurt.health > 0 and isSuper):
 			charHurt.stunHit(100.0, 2.5)
@@ -213,10 +214,14 @@ func _on_HurtArea_area_entered(area):
 		if (charHurt.health > 0 and isPunching):
 			meter += 7
 			charHurt.stunHit(10.0, .75)
+			$HitSoundPunchBoss.play()
+			$SoundDurationPunchBoss.start()
 			
 		elif (charHurt.health > 0 and isKicking):
 			meter += 15
 			charHurt.stunHit(20.0, 1.75)
+			$HitSoundKickBoss.play()
+			$SoundDurationKickBoss.start()
 	
 	if (meter > maxMeter):
 		meter= maxMeter
@@ -243,6 +248,17 @@ func _on_transition_timeout():
 	loseTransition()
 
 
+func _on_SoundDurationKick_timeout():
+	$HitSoundKick.stop()
 
-func _on_SoundDuration_timeout():
+
+func _on_SoundDurationPunchBoss_timeout():
+	$HitSoundPunchBoss.stop()
+
+
+func _on_SoundDurationKickBoss_timeout():
+	$HitSoundKickBoss.stop()
+
+
+func _on_SoundDurationPunch_timeout():
 	$HitSoundPunch.stop()

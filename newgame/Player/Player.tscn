@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sounds/SoundEffectStream.tscn" type="PackedScene" id=2]
@@ -17,6 +17,9 @@
 [ext_resource path="res://Sounds/Woosh_2.ogg" type="AudioStream" id=15]
 [ext_resource path="res://Sounds/Woosh_1.ogg" type="AudioStream" id=16]
 [ext_resource path="res://Sounds/HardPunch_3.ogg" type="AudioStream" id=17]
+[ext_resource path="res://Sounds/kick_3.ogg" type="AudioStream" id=18]
+[ext_resource path="res://Sounds/Punch 1 (flesh).ogg" type="AudioStream" id=19]
+[ext_resource path="res://Sounds/kick_2.ogg" type="AudioStream" id=20]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 26.6944
@@ -710,13 +713,38 @@ stream = ExtResource( 4 )
 wait_time = 3.0
 
 [node name="HitSoundPunch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 19 )
+
+[node name="HitSoundPunchBoss" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 17 )
 
-[node name="SoundDuration" type="Timer" parent="."]
+[node name="HitSoundKick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
+
+[node name="HitSoundKickBoss" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 20 )
+
+[node name="SoundDurationPunch" type="Timer" parent="."]
+wait_time = 0.125
+
+[node name="SoundDurationKick" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="SoundDurationPunchBoss" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="SoundDurationKickBoss" type="Timer" parent="."]
 wait_time = 0.5
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
 [connection signal="area_entered" from="Sprite/HurtArea" to="." method="_on_HurtArea_area_entered"]
 [connection signal="timeout" from="transition" to="." method="_on_transition_timeout"]
-[connection signal="timeout" from="SoundDuration" to="." method="_on_SoundDuration_timeout"]
+[connection signal="timeout" from="SoundDurationPunch" to="." method="_on_SoundDuration_timeout"]
+[connection signal="timeout" from="SoundDurationPunch" to="." method="_on_SoundDurationPunch_timeout"]
+[connection signal="timeout" from="SoundDurationKick" to="." method="_on_SoundDuration_timeout"]
+[connection signal="timeout" from="SoundDurationKick" to="." method="_on_SoundDurationKick_timeout"]
+[connection signal="timeout" from="SoundDurationPunchBoss" to="." method="_on_SoundDuration_timeout"]
+[connection signal="timeout" from="SoundDurationPunchBoss" to="." method="_on_SoundDurationPunchBoss_timeout"]
+[connection signal="timeout" from="SoundDurationKickBoss" to="." method="_on_SoundDuration_timeout"]
+[connection signal="timeout" from="SoundDurationKickBoss" to="." method="_on_SoundDurationKickBoss_timeout"]
