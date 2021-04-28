@@ -5,10 +5,22 @@
 [node name="Control" instance=ExtResource( 1 )]
 
 [node name="Label" parent="VBoxContainer" index="0"]
+margin_bottom = 627.0
 custom_colors/font_color = Color( 0.454902, 0.368627, 0.368627, 1 )
 custom_colors/font_outline_modulate = Color( 0.231373, 0.2, 0.2, 1 )
 custom_colors/font_color_shadow = Color( 0.568627, 0.529412, 0.529412, 1 )
 text = "
-You Lose
-Hell is Doomed
+Zera failed to defeat Tituss,
+retreating with a solemn 
+vow of coming revenge.
 "
+
+[node name="HBoxContainer" parent="VBoxContainer" index="1"]
+margin_top = 631.0
+margin_bottom = 823.0
+
+[node name="ChangeSceneButton" parent="VBoxContainer/HBoxContainer" index="0"]
+margin_bottom = 192.0
+
+[node name="QuitButton" parent="VBoxContainer/HBoxContainer" index="1"]
+margin_bottom = 192.0
