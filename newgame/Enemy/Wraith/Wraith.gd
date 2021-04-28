@@ -3,7 +3,7 @@ extends KinematicBody2D
 const fireball = preload("res://Enemy/Wraith/Fireball.tscn")
 
 onready var playerPosition = get_parent().get_node("Player")
-onready var enemyPosition = get_parent().get_node("Wraith")
+onready var enemyPosition = self
 onready var animationPlayer = $AnimationPlayer
 onready var enemyHealth = get_node("./Health/HealthBar")
 var maxHealth = 100
@@ -65,7 +65,7 @@ func _on_Punchbox_area_entered(area):
 	if ((area.get_parent().get_node_or_null("player") != null) and (playerPosition.health > 0)):
 		var charHurt = area.get_parent()
 		
-		charHurt.stunHit(25.0, 0.1)
+		charHurt.stunHit(10.0, 0.1)
 		
 func enemyDie():
 	animationPlayer.stop()

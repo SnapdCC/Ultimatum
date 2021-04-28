@@ -165,6 +165,10 @@ func stunHit(damageTake, stunFrame):
 		animationPlayer.playback_speed = 1
 		isDead = true
 		playerDeath()
+		
+	if (isSuper):
+		tempAnim = "Super"
+		
 	else:
 		if(!isGuarding):
 			animationPlayer.stop()

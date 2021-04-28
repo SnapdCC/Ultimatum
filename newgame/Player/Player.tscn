@@ -95,15 +95,15 @@ animations = [ {
 "name": "Walk",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
-"loop": false,
-"name": "Punch",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 2.5
+}, {
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"loop": false,
+"name": "Punch",
+"speed": 5.0
 } ]
 
 [sub_resource type="Animation" id=19]
@@ -541,10 +541,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.3, 3.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.3, 3.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ false, true ]
+"values": [ true, false, true ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Sprite/HurtArea/CollisionSuperShape2:disabled")
@@ -553,22 +553,10 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0.4, 3.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.4, 3.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ false, true ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("Sprite/HurtArea/CollisionSuperShape3:disabled")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0.4, 3.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
+"values": [ true, false, true ]
 }
 
 [sub_resource type="Animation" id=27]
@@ -663,10 +651,10 @@ anims/Special = SubResource( 26 )
 anims/Walk = SubResource( 27 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -1, -31 )
-texture = ExtResource( 9 )
+position = Vector2( -1, -35 )
+texture = ExtResource( 14 )
 region_enabled = true
-region_rect = Rect2( 250, 28, 57, 97 )
+region_rect = Rect2( 64, 50, 46, 107 )
 
 [node name="HurtArea" type="Area2D" parent="Sprite"]
 position = Vector2( 1, 31 )
@@ -690,17 +678,13 @@ shape = SubResource( 30 )
 disabled = true
 
 [node name="CollisionSuperShape1" type="CollisionShape2D" parent="Sprite/HurtArea"]
-position = Vector2( 13.0105, -57.5262 )
+position = Vector2( -5.31129, -57.3518 )
+scale = Vector2( 2.08896, 1 )
 shape = SubResource( 31 )
 disabled = true
 
 [node name="CollisionSuperShape2" type="CollisionShape2D" parent="Sprite/HurtArea"]
-position = Vector2( 58.312, -57.6843 )
-shape = SubResource( 31 )
-disabled = true
-
-[node name="CollisionSuperShape3" type="CollisionShape2D" parent="Sprite/HurtArea"]
-position = Vector2( 103.369, -57.8425 )
+position = Vector2( 54.1403, -57.7319 )
 shape = SubResource( 31 )
 disabled = true
 
@@ -740,11 +724,11 @@ wait_time = 0.5
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
 [connection signal="area_entered" from="Sprite/HurtArea" to="." method="_on_HurtArea_area_entered"]
 [connection signal="timeout" from="transition" to="." method="_on_transition_timeout"]
-[connection signal="timeout" from="SoundDurationPunch" to="." method="_on_SoundDuration_timeout"]
 [connection signal="timeout" from="SoundDurationPunch" to="." method="_on_SoundDurationPunch_timeout"]
-[connection signal="timeout" from="SoundDurationKick" to="." method="_on_SoundDuration_timeout"]
+[connection signal="timeout" from="SoundDurationPunch" to="." method="_on_SoundDuration_timeout"]
 [connection signal="timeout" from="SoundDurationKick" to="." method="_on_SoundDurationKick_timeout"]
-[connection signal="timeout" from="SoundDurationPunchBoss" to="." method="_on_SoundDuration_timeout"]
+[connection signal="timeout" from="SoundDurationKick" to="." method="_on_SoundDuration_timeout"]
 [connection signal="timeout" from="SoundDurationPunchBoss" to="." method="_on_SoundDurationPunchBoss_timeout"]
-[connection signal="timeout" from="SoundDurationKickBoss" to="." method="_on_SoundDuration_timeout"]
+[connection signal="timeout" from="SoundDurationPunchBoss" to="." method="_on_SoundDuration_timeout"]
 [connection signal="timeout" from="SoundDurationKickBoss" to="." method="_on_SoundDurationKickBoss_timeout"]
+[connection signal="timeout" from="SoundDurationKickBoss" to="." method="_on_SoundDuration_timeout"]

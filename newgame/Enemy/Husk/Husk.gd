@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 onready var playerPosition = get_parent().get_node("Player")
-onready var enemyPosition = get_parent().get_node("Husk")
+onready var enemyPosition = self
 onready var animationPlayer = $AnimationPlayer
 onready var enemyHealth = get_node("./Health/HealthBar")
 var maxHealth = int(100)
@@ -66,7 +66,7 @@ func _on_Punchbox_area_entered(area):
 			stunHit(0, 3)
 			$attackCooldown.start()
 		
-		charHurt.stunHit(25.0, 0.1)
+		charHurt.stunHit(5.0, 0.1)
 		
 func enemyDie():
 	animationPlayer.stop()
