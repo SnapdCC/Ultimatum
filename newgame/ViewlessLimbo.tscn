@@ -2,7 +2,6 @@
 
 [ext_resource path="res://Stage_Background.png" type="Texture" id=1]
 [ext_resource path="res://User Interface/LimboBossUI.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Enemy/Limbo Boss/LimboBoss.tscn" type="PackedScene" id=3]
 [ext_resource path="res://User Interface/PauseMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Stage_Trees.png" type="Texture" id=6]
@@ -12,6 +11,7 @@
 [ext_resource path="res://Enemy/Husk/Husk.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Enemy/Skeleton/Skeleton.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Enemy/Devil/Demon.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Enemy/Wraith/Wraith.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6.46372, 152.839 )
@@ -19,7 +19,7 @@ extents = Vector2( 6.46372, 152.839 )
 [node name="Node2D" type="Node2D"]
 
 [node name="Boss_Spawn_Point" type="Node2D" parent="."]
-position = Vector2( 588.969, 253.758 )
+position = Vector2( 529.867, 247.573 )
 
 [node name="Stage_Background" type="Sprite" parent="."]
 position = Vector2( 450.246, 150.784 )
@@ -105,21 +105,34 @@ margin_bottom = 6.10352e-05
 script = ExtResource( 7 )
 
 [node name="Demon" parent="." instance=ExtResource( 12 )]
-position = Vector2( 856.044, 246.085 )
+position = Vector2( -728.129, 265.72 )
 
 [node name="Husk" parent="." instance=ExtResource( 10 )]
-position = Vector2( 232.928, 266.205 )
+position = Vector2( -488.34, 267.246 )
 
 [node name="Husk2" parent="." instance=ExtResource( 10 )]
-position = Vector2( 467.522, 235.899 )
+position = Vector2( -586.121, 240.944 )
 
 [node name="Husk3" parent="." instance=ExtResource( 10 )]
-position = Vector2( 412.522, 277.43 )
+position = Vector2( -641.121, 282.475 )
 
 [node name="Skeleton" parent="." instance=ExtResource( 11 )]
-position = Vector2( 642.626, 253.297 )
+position = Vector2( -411.017, 258.342 )
 
-[node name="LimboBoss" parent="." instance=ExtResource( 3 )]
-position = Vector2( 4602.3, 493.85 )
+[node name="Husk4" parent="." instance=ExtResource( 10 )]
+position = Vector2( 332.08, 251.181 )
 
-[editable path="LimboBoss"]
+[node name="Husk5" parent="." instance=ExtResource( 10 )]
+position = Vector2( 572.576, 251.181 )
+
+[node name="Skeleton2" parent="." instance=ExtResource( 11 )]
+position = Vector2( 439.715, 246.136 )
+
+[node name="Skeleton3" parent="." instance=ExtResource( 11 )]
+position = Vector2( 510.35, 244.454 )
+
+[node name="Wraith" parent="." instance=ExtResource( 13 )]
+position = Vector2( 659.189, 250.341 )
+
+[node name="Wraith2" parent="." instance=ExtResource( 13 )]
+position = Vector2( -535.007, 266.318 )
