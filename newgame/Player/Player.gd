@@ -17,6 +17,7 @@ var canDoubleHit = false
 var isDoubleHitActive = false
 var isKicking = false
 var isGuarding = false
+var canHit = true
 var inStun = false
 var isSuper = false
 var isDead = false
@@ -55,15 +56,18 @@ func _physics_process(delta):
 				isDoubleHitActive = true
 				anim_new = "Double Punch"
 				canDoubleHit = false
+				canHit = false
 				doubleHitPlay()
+				$attackCooldown.start()
 	else:
 		canDoubleHit = false
 
 # watches for punch and if double punch is available
-	if (Input.is_action_just_pressed("punch") and !isSuper and !isDoubleHitActive and !isKicking and !isGuarding and !inStun and !isDead):
+	if (Input.is_action_just_pressed("punch") and !isSuper and !isDoubleHitActive and !isKicking and !isGuarding and !inStun and !isDead and canHit):
 		canDoubleHit = true
 		isPunching = true
 		tempAnim = "Punch"
+		canHit = false
 		
 		#plays kick animation and attack
 	if (Input.is_action_just_pressed("kick") and !isSuper and !isDoubleHitActive and !isPunching and !isGuarding and !inStun and !isDead):
@@ -137,6 +141,7 @@ func doubleHitPlay():
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if (anim_name == "Punch"):
 		isPunching = false
+		canHit = true
 	elif (anim_name == "Double Punch"):
 		isPunching = false
 		isDoubleHitActive = false
@@ -183,6 +188,9 @@ func stunHit(damageTake, stunFrame):
 			
 			if (tempAnim != "Hurt"):
 				tempAnim = "Hurt"
+				
+			if (inStun):
+				animationPlayer.stop()
 			
 	
 
@@ -217,13 +225,13 @@ func _on_HurtArea_area_entered(area):
 		
 		if (charHurt.health > 0 and isPunching):
 			meter += 7
-			charHurt.stunHit(10.0, .75)
+			charHurt.stunHit(5.0, .75)
 			$HitSoundPunchBoss.play()
 			$SoundDurationPunchBoss.start()
 			
 		elif (charHurt.health > 0 and isKicking):
 			meter += 15
-			charHurt.stunHit(20.0, 1.75)
+			charHurt.stunHit(10.0, 1.75)
 			$HitSoundKickBoss.play()
 			$SoundDurationKickBoss.start()
 	
@@ -266,3 +274,8 @@ func _on_SoundDurationKickBoss_timeout():
 
 func _on_SoundDurationPunch_timeout():
 	$HitSoundPunch.stop()
+
+
+func _on_attackCooldown_timeout():
+	canHit = true
+	canDoubleHit = true
