@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Screens/WinScreen.tscn" type="PackedScene" id=1]
+[ext_resource path="res://fonts/Imported/Montreal-boldSmall.tres" type="DynamicFont" id=2]
+
+[node name="Control" instance=ExtResource( 1 )]
+
+[node name="Label" parent="VBoxContainer" index="0"]
+margin_bottom = 582.0
+custom_fonts/font = ExtResource( 2 )
+text = "
+Our story begins in the First Circle of Hell. Zera Zentel, a
+refugee from the Circle of Violence, begins her quest to dethrone
+the tyrannical Ultimatum. Assuming power through betraying the
+previous Ultimatum, he has ushered in an authoritative rule over
+his subjects, dominating every aspect of their lives. Zera's own tribe
+has also been forced into days of manual labor, but now that her 
+training has been complete, she seeks revenge towards everyone
+who stands in her way. Her first obstacle is Tituss, a forsaken warrior
+who seeks redemption through crushing Zera's rebellion in the name
+of the Ultimatum. Once he is defeated, exit all the way to the right.
+Good luck!
+"
+
+[node name="HBoxContainer" parent="VBoxContainer" index="1"]
+margin_top = 586.0
+
+[node name="ChangeSceneButton" parent="VBoxContainer/HBoxContainer" index="0"]
+margin_right = 1280.0
+margin_bottom = 134.0
+text = "Continue"
+next_scene_path = "res://LimboViewportManager.tscn"
+
+[node name="QuitButton" parent="VBoxContainer/HBoxContainer" index="1"]
+visible = false
+margin_bottom = 584.0
