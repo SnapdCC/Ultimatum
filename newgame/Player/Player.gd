@@ -4,8 +4,8 @@ signal walls
 export var speed = 220
 var screen_size
 
-var health = 1000
-var maxHealth = 1000
+var health = 100
+var maxHealth = 100
 onready var zeraHealth:TextureProgress = get_node("../CanvasLayer/ZeraUI/Frame/HealthBar")
 
 var meter:float = 0.0
@@ -168,7 +168,7 @@ func stunHit(damageTake, stunFrame):
 		isDead = true
 		playerDeath()
 		
-	if (isSuper):
+	elif (isSuper):
 		tempAnim = "Super"
 		
 	else:

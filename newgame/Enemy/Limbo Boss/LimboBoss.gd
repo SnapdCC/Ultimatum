@@ -19,7 +19,7 @@ var isPunching = false
 var noWalk = false
 var inStun = false
 var attackGenerator = RandomNumberGenerator.new()
-var attackChoice = attackGenerator.randf_range(1, 3)
+var attackChoice = 6
 
 onready var playerPosition = get_parent().get_node("Player")
 var bossSpeed = 45
@@ -140,7 +140,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		isPunching = false
 		isCharging = false
 		noWalk = false
-		attackChoice = attackGenerator.randf_range(1, 10)
+		attackChoice = attackGenerator.randf_range(5, 10)
 	
 	if (anim_name == "Death"):
 		queue_free()
