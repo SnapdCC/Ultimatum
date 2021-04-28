@@ -66,7 +66,7 @@ func _on_Punchbox_area_entered(area):
 			stunHit(0, 2)
 			$attackCooldown.start()
 			
-		charHurt.stunHit(25.0, 0.5)
+		charHurt.stunHit(25.0, 0.1)
 		
 func enemyDie():
 	animationPlayer.stop()

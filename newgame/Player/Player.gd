@@ -174,14 +174,13 @@ func stunHit(damageTake, stunFrame):
 			isDoubleHitActive = false
 			
 			inStun = true
-			if (inStun):
-				pass
-			
 			
 			animationPlayer.playback_speed = 1 / stunFrame
 			
 			if (tempAnim != "Hurt"):
 				tempAnim = "Hurt"
+			
+	
 
 # if an attack lands
 func _on_HurtArea_area_entered(area):

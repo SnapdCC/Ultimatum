@@ -314,7 +314,7 @@ disabled = true
 wait_time = 3.0
 
 [node name="fireballCooldown" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 10.0
 
 [node name="enemy" type="Node" parent="."]
 

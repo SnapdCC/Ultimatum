@@ -69,7 +69,8 @@ func _on_AttackArea_area_entered(area):
 			stunHit(0, 3)
 			$attackCooldown.start()
 		
-		charHurt.stunHit(10.0, 1)
+		charHurt.stunHit(10.0, 0.1)
+
 func enemyDie():
 	animationPlayer.stop()
 	tempAnim = "Death"
