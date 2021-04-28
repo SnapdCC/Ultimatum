@@ -4,8 +4,8 @@ signal walls
 export var speed = 220
 var screen_size
 
-var health = 100
-var maxHealth = 100
+var health = 1000
+var maxHealth = 1000
 onready var zeraHealth:TextureProgress = get_node("../CanvasLayer/ZeraUI/Frame/HealthBar")
 
 var meter:float = 0.0
@@ -17,7 +17,6 @@ var canDoubleHit = false
 var isDoubleHitActive = false
 var isKicking = false
 var isGuarding = false
-var canHit = true
 var inStun = false
 var isSuper = false
 var isDead = false
@@ -56,18 +55,15 @@ func _physics_process(delta):
 				isDoubleHitActive = true
 				anim_new = "Double Punch"
 				canDoubleHit = false
-				canHit = false
 				doubleHitPlay()
-				$attackCooldown.start()
 	else:
 		canDoubleHit = false
 
 # watches for punch and if double punch is available
-	if (Input.is_action_just_pressed("punch") and !isSuper and !isDoubleHitActive and !isKicking and !isGuarding and !inStun and !isDead and canHit):
+	if (Input.is_action_just_pressed("punch") and !isSuper and !isDoubleHitActive and !isKicking and !isGuarding and !inStun and !isDead):
 		canDoubleHit = true
 		isPunching = true
 		tempAnim = "Punch"
-		canHit = false
 		
 		#plays kick animation and attack
 	if (Input.is_action_just_pressed("kick") and !isSuper and !isDoubleHitActive and !isPunching and !isGuarding and !inStun and !isDead):
@@ -121,6 +117,8 @@ func animationSwapper(anim):
 	if (anim != anim_new and !isDoubleHitActive):
 		anim_new = anim
 		animationPlayer.play(anim)
+	elif(anim=="Hurt"):
+		animationPlayer.play(anim)
 
 func playerDeath():
 	animationPlayer.stop()
@@ -141,7 +139,6 @@ func doubleHitPlay():
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if (anim_name == "Punch"):
 		isPunching = false
-		canHit = true
 	elif (anim_name == "Double Punch"):
 		isPunching = false
 		isDoubleHitActive = false
@@ -190,6 +187,8 @@ func stunHit(damageTake, stunFrame):
 				tempAnim = "Hurt"
 				
 			if (inStun):
+				#restart the hitstun animation
+				animationPlayer.seek(0, true)
 				animationPlayer.stop()
 			
 	
@@ -274,8 +273,3 @@ func _on_SoundDurationKickBoss_timeout():
 
 func _on_SoundDurationPunch_timeout():
 	$HitSoundPunch.stop()
-
-
-func _on_attackCooldown_timeout():
-	canHit = true
-	canDoubleHit = true

@@ -22,7 +22,7 @@ var attackGenerator = RandomNumberGenerator.new()
 var attackChoice = attackGenerator.randf_range(1, 3)
 
 onready var playerPosition = get_parent().get_node("Player")
-var bossSpeed = 25
+var bossSpeed = 45
 onready var bossPosition = get_parent().get_node("LimboBoss")
 
 

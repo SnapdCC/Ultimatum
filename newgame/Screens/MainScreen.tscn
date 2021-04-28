@@ -54,4 +54,4 @@ __meta__ = {
 
 [node name="PlayButton" parent="ViewportContainer/Menu" instance=ExtResource( 1 )]
 margin_bottom = 142.0
-next_scene_path = "res://LimboViewportManager.tscn"
+next_scene_path = "res://Screens/IntroScreen.tscn"

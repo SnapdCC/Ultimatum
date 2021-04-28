@@ -95,15 +95,15 @@ animations = [ {
 "name": "Walk",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 2.5
-}, {
 "frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
 "loop": false,
 "name": "Punch",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 2.5
 } ]
 
 [sub_resource type="Animation" id=19]
@@ -600,10 +600,10 @@ tracks/2/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=28]
-extents = Vector2( 20, 7 )
+extents = Vector2( 19.8457, 15.7929 )
 
 [sub_resource type="RectangleShape2D" id=29]
-extents = Vector2( 17.0951, 7.22027 )
+extents = Vector2( 17.0951, 16.5353 )
 
 [sub_resource type="RectangleShape2D" id=30]
 extents = Vector2( 19.4753, 10 )
@@ -654,7 +654,7 @@ anims/Walk = SubResource( 27 )
 position = Vector2( -1, -35 )
 texture = ExtResource( 14 )
 region_enabled = true
-region_rect = Rect2( 64, 50, 46, 107 )
+region_rect = Rect2( 301, 50, 39, 103 )
 
 [node name="HurtArea" type="Area2D" parent="Sprite"]
 position = Vector2( 1, 31 )
@@ -693,9 +693,6 @@ stream = ExtResource( 4 )
 
 [node name="player" type="Node" parent="."]
 
-[node name="attackCooldown" type="Timer" parent="."]
-wait_time = 1.5
-
 [node name="transition" type="Timer" parent="."]
 wait_time = 3.0
 
@@ -726,13 +723,12 @@ wait_time = 0.5
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
 [connection signal="area_entered" from="Sprite/HurtArea" to="." method="_on_HurtArea_area_entered"]
-[connection signal="timeout" from="attackCooldown" to="." method="_on_attackCooldown_timeout"]
 [connection signal="timeout" from="transition" to="." method="_on_transition_timeout"]
 [connection signal="timeout" from="SoundDurationPunch" to="." method="_on_SoundDurationPunch_timeout"]
 [connection signal="timeout" from="SoundDurationPunch" to="." method="_on_SoundDuration_timeout"]
-[connection signal="timeout" from="SoundDurationKick" to="." method="_on_SoundDurationKick_timeout"]
 [connection signal="timeout" from="SoundDurationKick" to="." method="_on_SoundDuration_timeout"]
-[connection signal="timeout" from="SoundDurationPunchBoss" to="." method="_on_SoundDurationPunchBoss_timeout"]
+[connection signal="timeout" from="SoundDurationKick" to="." method="_on_SoundDurationKick_timeout"]
 [connection signal="timeout" from="SoundDurationPunchBoss" to="." method="_on_SoundDuration_timeout"]
-[connection signal="timeout" from="SoundDurationKickBoss" to="." method="_on_SoundDurationKickBoss_timeout"]
+[connection signal="timeout" from="SoundDurationPunchBoss" to="." method="_on_SoundDurationPunchBoss_timeout"]
 [connection signal="timeout" from="SoundDurationKickBoss" to="." method="_on_SoundDuration_timeout"]
+[connection signal="timeout" from="SoundDurationKickBoss" to="." method="_on_SoundDurationKickBoss_timeout"]
