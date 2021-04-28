@@ -45,7 +45,7 @@ func _physics_process(delta):
 				tempAnim = "Idle"
 			
 		else:
-			if (canHit):
+			if (canHit&&((enemyPosition.position.x - playerPosition.position.x) <= 150 && (enemyPosition.position.x - playerPosition.position.x) >= -150)):
 				tempAnim = "Fireball"
 			else:
 				if (isPunching):
@@ -110,10 +110,10 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		isPunching = false
 		noWalk = false
 		var shoot = fireball.instance()
-		shoot.position = get_child(0).position
+		shoot.position = get_child(0).global_position
 		shoot.flip_X($Sprite.scale.x)
-		add_child(shoot)
-		print(shoot)
+		get_parent().add_child(shoot)
+		print(shoot.get_parent().name)
 	elif (anim_name == "Death"):
 		queue_free()
 		

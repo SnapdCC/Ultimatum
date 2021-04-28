@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-onready var playerPosition = get_parent().get_parent().get_node("Player")
+onready var playerPosition = get_parent().get_node("Player")
 export var speed = 50
 var FireballSprite = get_child(0)
 
